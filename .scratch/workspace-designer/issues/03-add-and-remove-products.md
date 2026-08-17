@@ -6,6 +6,8 @@ Adding is done by tapping a card. No dragging is involved anywhere in this ticke
 
 At most two monitors, counted across the whole monitor Category, with different models allowed together. A refused third monitor leaves everything untouched and says why, in words the user can act on.
 
+Every Product authored here carries its real Monis name and descriptor, taken verbatim from the *Evidence on Hand* table in [PRODUCT.md](../../../PRODUCT.md) — this supersedes the shorter names in PRD §7. Some run long ("24\" Full HD Office Monitor A24i"), so the Product Card has to hold a two-line name without breaking its baseline row.
+
 **Blocked by:** 02
 
 **Status:** ready-for-agent
@@ -18,3 +20,6 @@ At most two monitors, counted across the whole monitor Category, with different 
 - [ ] Removing a Product removes both the object and its stored position
 - [ ] Swapping the desk afterwards leaves every added Product and its position untouched
 - [ ] The plant is labelled as a concept Product
+- [ ] Every Product uses its real Monis name and descriptor from PRODUCT.md, verbatim
+- [ ] Descriptions written for this project read as this project's copy, never as Monis copy
+- [ ] The longest Product name still lays out cleanly on a card at mobile width

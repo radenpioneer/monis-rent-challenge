@@ -21,3 +21,11 @@ The five canonical roles, used verbatim as `Status:` values. See `docs/agents/tr
 ### Domain docs
 
 Single-context — `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+
+### Document authority
+
+Five documents bind this project and one of them is amendable. Before resolving a contradiction between `PRD.md`, `PRODUCT.md`, `DESIGN.md`, `CONTEXT.md`, or an ADR, see `docs/adr/0002-document-authority-and-the-design-workflow.md`.
+
+### Design workflow
+
+Tickets that change what the user sees run the `impeccable` skill at fixed points. See `docs/agents/design-workflow.md`.

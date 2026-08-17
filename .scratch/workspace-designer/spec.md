@@ -2,7 +2,9 @@
 
 Status: ready-for-agent
 
-Source: [PRD.md](../../PRD.md), sharpened through a grilling session. Vocabulary is binding and defined in [CONTEXT.md](../../CONTEXT.md). Scene architecture is fixed by [ADR-0001](../../docs/adr/0001-svg-scene-with-projected-zones.md).
+Source: [PRD.md](../../PRD.md), sharpened through a grilling session, and amended since — read its `## Amendments` table before treating any PRD section as current.
+
+Five documents bind this plan, and [ADR-0002](../../docs/adr/0002-document-authority-and-the-design-workflow.md) sets which one wins where they overlap. Vocabulary is [CONTEXT.md](../../CONTEXT.md). Scene architecture is [ADR-0001](../../docs/adr/0001-svg-scene-with-projected-zones.md). Brand and evidence are [PRODUCT.md](../../PRODUCT.md). The visual world is [DESIGN.md](../../DESIGN.md).
 
 ## Problem Statement
 
@@ -176,9 +178,11 @@ Restore happens after mount, inside a transition. The accepted consequence: a re
 
 ### Interface
 
-One light theme. The create-next-app `prefers-color-scheme` dark block is removed: Night mode is a property of the scene, not of the application chrome, and keeping both would produce four combinations to design and three of them bad.
+The visual world is fixed by [DESIGN.md](../../DESIGN.md) — palette, type, layout, elevation, components, and its named rules. What follows is only the part that constrains implementation.
 
-Desktop is the primary visual target, with the scene carrying the most weight. Mobile keeps the scene prominent, moves the catalog into tabs or a bottom sheet, pins the summary to the footer, and treats tapping as the primary interaction — dragging is supported but never required.
+One light theme. The create-next-app `prefers-color-scheme` dark block is removed: Night mode is a property of the scene, not of the application chrome, and keeping both would produce four combinations to design and three of them bad. Consistent with this, DESIGN.md's two palettes never mix — every saturated colour belongs to the room, and the chrome holds ink, three papers, and a hairline.
+
+Desktop is the primary visual target, with the scene carrying the most weight. Below `lg` (1024px) the catalog rail drops beneath the scene rather than becoming tabs or a bottom sheet — this supersedes PRD §20, recorded in the PRD's `## Amendments` table. The scene stays prominent, the running total pins to the footer, and tapping is the primary interaction; dragging is supported but never required.
 
 ## Testing Decisions
 
@@ -198,6 +202,16 @@ There is no prior art in the codebase; this is a fresh Next.js install with no t
 
 Verification in practice is: TypeScript, ESLint, the PRD's own edge-case list walked by hand, the PRD acceptance checklist walked by hand, and the running app in a browser. If written evidence of the pricing rules is wanted in the README, a thin Vitest file over Seam 2 is the cheapest thing to add and does not disturb this decision.
 
+## Design Decisions
+
+Design is not improvised per ticket. Any ticket that changes what the user sees runs the `impeccable` skill — `shape` before writing code, `polish` once the checklist is green and before `/code-review`. Tickets confined to `workspace` or `pricing` skip it entirely. The runbook is [docs/agents/design-workflow.md](../../docs/agents/design-workflow.md); the reasoning is in [ADR-0002](../../docs/adr/0002-document-authority-and-the-design-workflow.md).
+
+A ticket that wants a different sub-command says so in a `Design:` line. Three do: `10` runs `adapt`, `15` runs `colorize`, `16` runs `polish` across the whole app.
+
+The design detector hook is on, so UI edits surface findings as they happen. They are handled in one batch at the end of the ticket, never chased per edit — `impeccable` verifies in bounded passes, and an open-ended polish loop is exactly what the 8-hour budget cannot afford.
+
+`DESIGN.md` is deliberately incomplete where a ticket may be cut. It defines no night palette, because ticket 15 is first on the cut list and a palette for a feature that may never ship is the waste the cut order exists to prevent.
+
 ## Out of Scope
 
 Everything the PRD excludes: authentication, accounts, any backend, any database, real booking, payments, Stripe, real Monis API integration, real inventory, live availability, address autocomplete, maps, arbitrary room layouts, collision physics, product dimension simulation, desk size variants, 3D, WebGL, a CMS, an admin UI, analytics, promo codes, deposits, tax, insurance, and returns.
@@ -215,6 +229,6 @@ No collision system is built. Overlap is tolerated; sensible default positions, 
 
 Work is split across sixteen tickets in `issues/`, each a vertical slice that is demoable on its own and each carrying its blocking edges. P0 is `01`–`11`. Accessibility (`11`) is P0, not polish, because the PRD lists it as such and because a configurator that can only be operated by dragging is not usable. P1 is `12`–`15`, cut in reverse order under time pressure per the PRD's own cut list. `16` is shipping and is not optional.
 
-The frontier is `01`. Everything else is blocked behind it.
+`01` and `02` are closed. The frontier is `03`.
 
 Product assets are authored per slice rather than up front — each ticket draws only the Products it makes interactive. An earlier breakdown gathered all twelve into one ticket that gated the entire scene and whose cost was bounded by taste rather than logic; slicing vertically removes that gate. The residual risk is unchanged in kind but far smaller in blast radius: if a slice's assets run long, the honest lever is fewer accessories, not rougher drawings, since the PRD's cut order protects the visual preview above almost everything else.

@@ -9,6 +9,19 @@
 
 ---
 
+## Amendments
+
+This document is the baseline plan, and its body is never edited. Where development has moved past it, the change is recorded here. Authority and the amendment rule are set by [ADR-0002](docs/adr/0002-document-authority-and-the-design-workflow.md).
+
+| PRD section | Amended by | Substance |
+| --- | --- | --- |
+| §7 Product Catalog | `PRODUCT.md` → *Evidence on Hand* | Superseded. Every Product carries its real Monis name and descriptor verbatim — the lamp is the Smart LED Desk Lamp **1S**, the mouse the MX Master **S3**, the 34" is a **4K Gaming Monitor** rather than "Curved". Descriptions written for this project are never presented as Monis copy. |
+| §20 Responsive Behavior | `DESIGN.md` → *Layout* | Superseded on one point. The catalog is a rail that drops beneath the scene below `lg` (1024px), not tabs or a bottom sheet. The sticky footer summary, tap-to-add, and scene prominence all stand. |
+| Brand and visual identity | `PRODUCT.md` → *Brand Commitments*, and `DESIGN.md` | Extended. The PRD is silent on brand; the real monis.rent identity — Inter, near-black on near-white, hairline pills, one cream fill — is now binding, and the full visual world is fixed by `DESIGN.md`. |
+| §27 8-Hour Implementation Strategy | [ADR-0002](docs/adr/0002-document-authority-and-the-design-workflow.md) | Extended. Tickets that change what the user sees carry `impeccable` steps. See `docs/agents/design-workflow.md`. |
+
+---
+
 ## 1. Product Summary
 
 Build a visual workspace configurator for Monis, a Bali-based equipment rental service.
