@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 import { ProductThumbnail } from "@/catalog/assets";
 import type { CatalogProduct } from "@/catalog/products";
 import { formatRate } from "@/pricing/format";
+import { rateFor } from "@/pricing/setup-rate";
+import type { Cycle } from "@/workspace/types";
 
 /**
  * What this card offers for its Product. One shape per product rule, so the
@@ -47,18 +49,22 @@ function surface(active: boolean): string {
  */
 export function ProductCard({
   product,
+  cycle,
   offer,
 }: {
   product: CatalogProduct;
+  /** The Cycle every rate on the card is quoted in, so the rail agrees with
+   * the Setup rate above it rather than always speaking in weeks. */
+  cycle: Cycle;
   offer: CardOffer;
 }) {
   switch (offer.kind) {
     case "swap":
-      return <SwapCard product={product} offer={offer} />;
+      return <SwapCard product={product} cycle={cycle} offer={offer} />;
     case "toggle":
-      return <ToggleCard product={product} offer={offer} />;
+      return <ToggleCard product={product} cycle={cycle} offer={offer} />;
     case "count":
-      return <CountCard product={product} offer={offer} />;
+      return <CountCard product={product} cycle={cycle} offer={offer} />;
   }
 }
 
@@ -67,7 +73,15 @@ export function ProductCard({
  * the selected state is deliberately over-specified — fill, border, ring, a
  * drawn tick, and a sentence — because selection may never rest on colour.
  */
-function SwapCard({ product, offer }: { product: CatalogProduct; offer: SwapOffer }) {
+function SwapCard({
+  product,
+  cycle,
+  offer,
+}: {
+  product: CatalogProduct;
+  cycle: Cycle;
+  offer: SwapOffer;
+}) {
   return (
     <button
       type="button"
@@ -78,6 +92,7 @@ function SwapCard({ product, offer }: { product: CatalogProduct; offer: SwapOffe
     >
       <Contents
         product={product}
+        cycle={cycle}
         action={offer.selected ? <InWorkspace /> : <ActionWord>Swap in</ActionWord>}
       />
     </button>
@@ -88,7 +103,15 @@ function SwapCard({ product, offer }: { product: CatalogProduct; offer: SwapOffe
  * A Product wanted once or not at all. The whole card toggles, which is the
  * largest tap target the rail can offer and the one mobile relies on.
  */
-function ToggleCard({ product, offer }: { product: CatalogProduct; offer: ToggleOffer }) {
+function ToggleCard({
+  product,
+  cycle,
+  offer,
+}: {
+  product: CatalogProduct;
+  cycle: Cycle;
+  offer: ToggleOffer;
+}) {
   return (
     <button
       type="button"
@@ -103,6 +126,7 @@ function ToggleCard({ product, offer }: { product: CatalogProduct; offer: Toggle
     >
       <Contents
         product={product}
+        cycle={cycle}
         action={
           offer.placed ? (
             <InWorkspace hint="Remove" />
@@ -125,16 +149,36 @@ function ToggleCard({ product, offer }: { product: CatalogProduct; offer: Toggle
  * width the rail is laid out at, and the PRD's actual rule, that selection
  * never rests on colour alone, is met by the figure.
  */
-function CountCard({ product, offer }: { product: CatalogProduct; offer: CountOffer }) {
+function CountCard({
+  product,
+  cycle,
+  offer,
+}: {
+  product: CatalogProduct;
+  cycle: Cycle;
+  offer: CountOffer;
+}) {
   return (
     <div className={surface(offer.count > 0)}>
-      <Contents product={product} action={<Stepper product={product} offer={offer} />} />
+      <Contents
+        product={product}
+        cycle={cycle}
+        action={<Stepper product={product} offer={offer} />}
+      />
     </div>
   );
 }
 
 /** The parts of a card that never depend on the rule: image, name, price. */
-function Contents({ product, action }: { product: CatalogProduct; action: ReactNode }) {
+function Contents({
+  product,
+  cycle,
+  action,
+}: {
+  product: CatalogProduct;
+  cycle: Cycle;
+  action: ReactNode;
+}) {
   return (
     <>
       <span className="grid size-20 shrink-0 place-items-center overflow-hidden rounded-xl bg-ground p-1.5">
@@ -161,7 +205,7 @@ function Contents({ product, action }: { product: CatalogProduct; action: ReactN
         <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1.5">
           {action}
           <span className="ml-auto shrink-0 text-sm font-medium tabular-nums text-ink">
-            {formatRate(product.weeklyRate, "weekly")}
+            {formatRate(rateFor(product.id, cycle), cycle)}
           </span>
         </span>
       </span>

@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { getProduct } from "@/catalog/products";
-import { useWorkspace } from "@/ui/workspace-provider";
+import { useRental } from "@/ui/rental-provider";
 
 export default function ReviewPage() {
-  const { workspace } = useWorkspace();
+  const { rental } = useRental();
+  const { workspace } = rental;
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-6 px-4 pb-16 sm:px-6">

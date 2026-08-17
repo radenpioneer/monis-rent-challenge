@@ -16,8 +16,9 @@ import {
 } from "@/workspace/constraints";
 import type { WorkspaceAction } from "@/workspace/reducer";
 import type { Workspace } from "@/workspace/types";
+import { pillClasses } from "./pill";
 import { ProductCard, type CardOffer } from "./product-card";
-import { useWorkspace } from "./workspace-provider";
+import { useRental } from "./rental-provider";
 
 const CATEGORIES = browsableCategories();
 const MONITOR_NOTICE_ID = "monitor-limit";
@@ -74,7 +75,8 @@ function offerFor(
 }
 
 export function CatalogPanel() {
-  const { workspace, dispatch } = useWorkspace();
+  const { rental, dispatch } = useRental();
+  const { workspace, cycle } = rental;
   const [category, setCategory] = useState(CATEGORIES[0]);
 
   return (
@@ -89,11 +91,7 @@ export function CatalogPanel() {
             type="button"
             aria-pressed={option === category}
             onClick={() => setCategory(option)}
-            className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
-              option === category
-                ? "border-ink bg-ink text-surface"
-                : "border-line bg-surface text-ink-muted hover:border-ink-faint hover:bg-cream"
-            }`}
+            className={pillClasses(option === category)}
           >
             {CATEGORY_LABELS[option]}
           </button>
@@ -105,7 +103,11 @@ export function CatalogPanel() {
       <ul className="flex flex-col gap-3">
         {productsInCategory(category).map((product) => (
           <li key={product.id}>
-            <ProductCard product={product} offer={offerFor(product, workspace, dispatch)} />
+            <ProductCard
+              product={product}
+              cycle={cycle}
+              offer={offerFor(product, workspace, dispatch)}
+            />
           </li>
         ))}
       </ul>

@@ -128,18 +128,32 @@
         "role": "tertiary",
         "displayName": "Room Wall",
         "canonical": "#f6f4ee",
-        "gradient": ["#fcfaf6", "#f0eae0"],
+        "gradient": [
+          "#fcfaf6",
+          "#f0eae0"
+        ],
         "note": "Vertical gradient. The frontmatter value is the midpoint; the gradient pair is normative in src/scene/room.tsx."
       },
       "room-floor": {
         "role": "tertiary",
         "displayName": "Room Floor",
         "canonical": "#e7dfd3",
-        "gradient": ["#efe8de", "#e0d6c8"],
+        "gradient": [
+          "#efe8de",
+          "#e0d6c8"
+        ],
         "note": "Vertical gradient. Frontmatter value is the midpoint."
       },
-      "room-skirting": { "role": "tertiary", "displayName": "Skirting", "canonical": "#f4eee5" },
-      "room-horizon": { "role": "tertiary", "displayName": "Horizon Line", "canonical": "#dcd2c2" },
+      "room-skirting": {
+        "role": "tertiary",
+        "displayName": "Skirting",
+        "canonical": "#f4eee5"
+      },
+      "room-horizon": {
+        "role": "tertiary",
+        "displayName": "Horizon Line",
+        "canonical": "#dcd2c2"
+      },
       "daylight": {
         "role": "tertiary",
         "displayName": "Daylight",
@@ -150,7 +164,10 @@
         "role": "tertiary",
         "displayName": "Sky",
         "canonical": "#d6edef",
-        "gradient": ["#d6edef", "#f6fcfb"]
+        "gradient": [
+          "#d6edef",
+          "#f6fcfb"
+        ]
       },
       "foliage": {
         "role": "tertiary",
@@ -212,16 +229,28 @@
         "displayName": "Headline",
         "purpose": "Page titles, and the live Setup rate, which is the builder's page title in all but grammar. One per screen."
       },
-      "title": { "displayName": "Title", "purpose": "Product names and labels naming a thing being chosen between." },
-      "body": { "displayName": "Body", "purpose": "Running copy and instructions." },
-      "caption": { "displayName": "Caption", "purpose": "Descriptions, disclaimers, secondary help. Always Ink Muted." },
-      "label": { "displayName": "Label", "purpose": "Wordmark lockup second line and the Concept badge. Never an eyebrow above a heading." }
+      "title": {
+        "displayName": "Title",
+        "purpose": "Product names and labels naming a thing being chosen between."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running copy and instructions."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Descriptions, disclaimers, secondary help. Always Ink Muted."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Wordmark lockup second line and the Concept badge. Never an eyebrow above a heading."
+      }
     },
     "shadows": [
       {
         "name": "scene-lift",
         "value": "0 24px 60px -28px rgba(43,39,33,0.45)",
-        "purpose": "The scene plate only. The largest lift in the system — the room is the one object with real physical presence."
+        "purpose": "The scene plate only. The largest lift in the system \u2014 the room is the one object with real physical presence."
       },
       {
         "name": "panel-lift",
@@ -230,17 +259,31 @@
       },
       {
         "name": "contact-shadow",
-        "value": "SVG ellipse, fill #2B2721 at 0.07–0.08 opacity",
-        "purpose": "Under every desk and chair inside the scene. Not a box-shadow — it is drawn geometry, so it skews with the room."
+        "value": "SVG ellipse, fill #2B2721 at 0.07\u20130.08 opacity",
+        "purpose": "Under every desk and chair inside the scene. Not a box-shadow \u2014 it is drawn geometry, so it skews with the room."
       }
     ],
     "motion": [
-      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for every state transition." },
-      { "name": "duration-state", "value": "150ms", "purpose": "Hover, focus, and selection colour changes." }
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default easing for every state transition."
+      },
+      {
+        "name": "duration-state",
+        "value": "150ms",
+        "purpose": "Hover, focus, and selection colour changes."
+      }
     ],
     "breakpoints": [
-      { "name": "sm", "value": "640px" },
-      { "name": "lg", "value": "1024px" }
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
     ]
   },
   "components": [
@@ -280,7 +323,7 @@
       "name": "Concept Badge",
       "kind": "chip",
       "refersTo": "badge-concept",
-      "description": "Marks a Product Monis does not actually rent. Never ships without the sentence beside it — the badge alone does not carry the meaning.",
+      "description": "Marks a Product Monis does not actually rent. Never ships without the sentence beside it \u2014 the badge alone does not carry the meaning.",
       "html": "<span class=\"ds-concept\"><span class=\"ds-concept-pill\">Concept</span><span class=\"ds-concept-note\">Not rented by Monis today</span></span>",
       "css": ".ds-concept { display: inline-flex; align-items: center; gap: 6px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-concept-pill { background: var(--signal, #63aefd); color: var(--ink, #2b2721); border-radius: 9999px; padding: 2px 8px; font-size: 0.65rem; font-weight: 600; line-height: 1; text-transform: uppercase; letter-spacing: 0.2em; } .ds-concept-note { font-size: 0.7rem; color: var(--ink-muted, #6b6259); }"
     },
@@ -288,15 +331,15 @@
       "name": "Catalog Panel",
       "kind": "card",
       "refersTo": "panel",
-      "description": "The container the catalog lives in. Lifted by shadow, with no border — depth is declared once.",
-      "html": "<section class=\"ds-panel\" aria-label=\"Product catalog\"><div class=\"ds-panel-row\"><button type=\"button\" class=\"ds-panel-chip-active\">Desks</button><button type=\"button\" class=\"ds-panel-chip\">Chairs</button></div><p class=\"ds-panel-note\">Demo pricing — invented for this concept, not a real Monis quote.</p></section>",
+      "description": "The container the catalog lives in. Lifted by shadow, with no border \u2014 depth is declared once.",
+      "html": "<section class=\"ds-panel\" aria-label=\"Product catalog\"><div class=\"ds-panel-row\"><button type=\"button\" class=\"ds-panel-chip-active\">Desks</button><button type=\"button\" class=\"ds-panel-chip\">Chairs</button></div><p class=\"ds-panel-note\">Demo pricing \u2014 invented for this concept, not a real Monis quote.</p></section>",
       "css": ".ds-panel { display: flex; flex-direction: column; gap: 16px; background: var(--surface, #ffffff); border-radius: 24px; padding: 16px; box-shadow: 0 18px 46px -30px rgba(43,39,33,0.5); font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-panel-row { display: flex; flex-wrap: wrap; gap: 8px; } .ds-panel-chip, .ds-panel-chip-active { font-size: 0.875rem; font-weight: 500; border-radius: 9999px; padding: 6px 14px; border: 1px solid var(--line, #e8e1d6); background: var(--surface, #ffffff); color: var(--ink-muted, #6b6259); cursor: pointer; } .ds-panel-chip-active { background: var(--ink, #2b2721); color: var(--surface, #ffffff); border-color: var(--ink, #2b2721); } .ds-panel-note { font-size: 0.75rem; color: var(--ink-muted, #6b6259); margin: 0; }"
     },
     {
       "name": "Text Link",
       "kind": "nav",
       "refersTo": "link-text",
-      "description": "The only link treatment. Ink text with a faint underline that darkens on hover — the text colour never changes.",
+      "description": "The only link treatment. Ink text with a faint underline that darkens on hover \u2014 the text colour never changes.",
       "html": "<a href=\"#\" class=\"ds-link\">Review setup</a>",
       "css": ".ds-link { font: 500 0.875rem/1.5 Inter, ui-sans-serif, system-ui, sans-serif; color: var(--ink, #2b2721); text-decoration: underline; text-decoration-color: var(--ink-faint, #a79c8e); text-underline-offset: 4px; border-radius: 4px; transition: text-decoration-color 150ms cubic-bezier(0.4,0,0.2,1); } .ds-link:hover { text-decoration-color: var(--ink, #2b2721); } .ds-link:focus-visible { outline: 2px solid var(--ink, #2b2721); outline-offset: 4px; }"
     },
@@ -307,14 +350,38 @@
       "description": "The header is a lockup, not a nav bar: an Ink tile carrying a cream desk glyph, the name, and the product line beneath it in tracked Label.",
       "html": "<a href=\"#\" class=\"ds-mark\"><span class=\"ds-mark-tile\" aria-hidden=\"true\"><svg viewBox=\"0 0 32 32\" class=\"ds-mark-glyph\" fill=\"none\"><path d=\"M6 13h20v3.5H6z\" fill=\"#F9F2EA\"/><path d=\"M8.5 16.5h3V25h-3zM20.5 16.5h3V25h-3z\" fill=\"#F9F2EA\"/></svg></span><span><span class=\"ds-mark-name\">Monis</span><span class=\"ds-mark-sub\">Workspace Designer</span></span></a>",
       "css": ".ds-mark { display: flex; align-items: center; gap: 12px; text-decoration: none; border-radius: 8px; font-family: Inter, ui-sans-serif, system-ui, sans-serif; } .ds-mark:focus-visible { outline: 2px solid var(--ink, #2b2721); outline-offset: 4px; } .ds-mark-tile { display: grid; place-items: center; width: 36px; height: 36px; background: var(--ink, #2b2721); border-radius: 12px; } .ds-mark-glyph { width: 20px; height: 20px; } .ds-mark-name { display: block; font-size: 1.125rem; font-weight: 600; line-height: 1; letter-spacing: -0.025em; color: var(--ink, #2b2721); } .ds-mark-sub { display: block; margin-top: 4px; font-size: 0.65rem; line-height: 1; text-transform: uppercase; letter-spacing: 0.2em; color: var(--ink-muted, #6b6259); }"
+    },
+    {
+      "name": "Choice Pill",
+      "kind": "chip",
+      "refersTo": "pill-choice",
+      "description": "Picks one Area or one Cycle. The Category Chip's geometry over a real radio, because choosing is answering a question rather than performing an action: one tab stop per group, arrow keys between options, checked state announced.",
+      "html": "<label class=\"ds-pill-choice\"><input type=\"radio\" name=\"delivery-area\"/>Seminyak</label>",
+      "css": ".ds-pill-choice { position: relative; display: inline-block; font: 500 0.875rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; background: var(--surface, #ffffff); color: var(--ink-muted, #6b6259); border: 1px solid var(--line, #e8e1d6); border-radius: 9999px; padding: 6px 14px; cursor: pointer; transition: background 150ms cubic-bezier(0.4,0,0.2,1), border-color 150ms cubic-bezier(0.4,0,0.2,1), color 150ms cubic-bezier(0.4,0,0.2,1); } .ds-pill-choice input { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); } .ds-pill-choice:hover { background: var(--cream, #f9f2ea); border-color: var(--ink-faint, #a79c8e); } .ds-pill-choice:has(:focus-visible) { outline: 2px solid var(--ink, #2b2721); outline-offset: 2px; }"
+    },
+    {
+      "name": "Choice Pill (selected)",
+      "kind": "chip",
+      "refersTo": "pill-choice-selected",
+      "description": "The chosen option. Ink fill, so the state survives a greyscale screenshot; the group's own label names what was chosen.",
+      "html": "<label class=\"ds-pill-choice-selected\"><input type=\"radio\" name=\"delivery-area\" checked/>Canggu</label>",
+      "css": ".ds-pill-choice-selected { position: relative; display: inline-block; font: 500 0.875rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; background: var(--ink, #2b2721); color: var(--surface, #ffffff); border: 1px solid var(--ink, #2b2721); border-radius: 9999px; padding: 6px 14px; cursor: pointer; } .ds-pill-choice-selected input { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); } .ds-pill-choice-selected:has(:focus-visible) { outline: 2px solid var(--ink, #2b2721); outline-offset: 2px; }"
+    },
+    {
+      "name": "Field Control",
+      "kind": "form",
+      "refersTo": "control-field",
+      "description": "A native select or date input for choices too large or too structured to show at once. Only the closed control is restyled; the browser's picker is left alone. Text is 1rem so iOS does not zoom on focus, with the label above in Title and help text below in Caption.",
+      "html": "<label class=\"ds-field-label\" for=\"rental-duration\">Weeks</label><select class=\"ds-field\" id=\"rental-duration\"><option>1</option></select><p class=\"ds-field-hint\">Today or later. Same-day delivery is fine.</p>",
+      "css": ".ds-field-label { display: block; font: 600 0.875rem/1.4 Inter, ui-sans-serif, system-ui, sans-serif; color: var(--ink, #2b2721); margin-bottom: 8px; } .ds-field { height: 40px; width: 100%; font: 400 1rem/1.5 Inter, ui-sans-serif, system-ui, sans-serif; color: var(--ink, #2b2721); background: var(--surface, #ffffff); border: 1px solid var(--line, #e8e1d6); border-radius: 9999px; padding: 0 16px; transition: border-color 150ms cubic-bezier(0.4,0,0.2,1); } .ds-field:hover { border-color: var(--ink-faint, #a79c8e); } .ds-field:focus-visible { outline: 2px solid var(--ink, #2b2721); outline-offset: 2px; } .ds-field-hint { font: 400 0.75rem/1.375 Inter, ui-sans-serif, system-ui, sans-serif; color: var(--ink-muted, #6b6259); margin-top: 8px; }"
     }
   ],
   "narrative": {
     "northStar": "The Villa Showroom",
-    "overview": "A rented villa in Bali, cleared out and turned into a showroom for a single afternoon. Warm light through a window, a terracotta rug, a rattan pendant overhead, and one desk set up in the middle of it so you can see what living with it would feel like. The furniture is real and the room is real; the paperwork on the side table is quiet, printed, and out of the way.\n\nThat split is the whole system. The room carries every colour in the product. The interface carries none. The scene is a 2.5D SVG full of oak, walnut, terracotta, rattan, and daylight — 40-odd hand-authored hues — and it sits inside chrome that is nothing but warm paper, ink, and a single hairline. Panels do not compete with the room; they hold it. Hierarchy in the chrome comes from space and font weight, never from a coloured accent, because the moment the interface reaches for a colour it starts arguing with the furniture.\n\nThe identity is Monis's own, taken from monis.rent rather than invented: Inter, near-black on near-white, full-round pills, hairline borders, and one soft cream fill. Two things are deliberately refused. It is not a corporate SaaS dashboard — the room is the hero and it is drawn, not charted. It is not interior-design realism either — the furniture reads as a clear, flat, confident illustration a rental company would ship, not as a render.",
+    "overview": "A rented villa in Bali, cleared out and turned into a showroom for a single afternoon. Warm light through a window, a terracotta rug, a rattan pendant overhead, and one desk set up in the middle of it so you can see what living with it would feel like. The furniture is real and the room is real; the paperwork on the side table is quiet, printed, and out of the way.\n\nThat split is the whole system. The room carries every colour in the product. The interface carries none. The scene is a 2.5D SVG full of oak, walnut, terracotta, rattan, and daylight \u2014 40-odd hand-authored hues \u2014 and it sits inside chrome that is nothing but warm paper, ink, and a single hairline. Panels do not compete with the room; they hold it. Hierarchy in the chrome comes from space and font weight, never from a coloured accent, because the moment the interface reaches for a colour it starts arguing with the furniture.\n\nThe identity is Monis's own, taken from monis.rent rather than invented: Inter, near-black on near-white, full-round pills, hairline borders, and one soft cream fill. Two things are deliberately refused. It is not a corporate SaaS dashboard \u2014 the room is the hero and it is drawn, not charted. It is not interior-design realism either \u2014 the furniture reads as a clear, flat, confident illustration a rental company would ship, not as a render.",
     "keyCharacteristics": [
       "Colour lives in the scene; the chrome is paper and ink",
-      "Warm neutrals throughout — no cool grey anywhere in the system",
+      "Warm neutrals throughout \u2014 no cool grey anywhere in the system",
       "Depth from light, never from lines stacked on shadows",
       "One oblique skew governs every horizontal plane in the room",
       "Hairline borders and full-round pills, borrowed directly from Monis",
@@ -323,7 +390,7 @@
     "rules": [
       {
         "name": "The Quiet Frame Rule",
-        "body": "Every saturated colour in this product belongs to the room. A hue appearing in the chrome is either the Concept signal or a mistake. The interface has ink, three papers, and a hairline — that is the entire budget.",
+        "body": "Every saturated colour in this product belongs to the room. A hue appearing in the chrome is either the Concept signal or a mistake. The interface has ink, three papers, and a hairline \u2014 that is the entire budget.",
         "section": "colors"
       },
       {
@@ -338,7 +405,7 @@
       },
       {
         "name": "The Lockup-Only Rule",
-        "body": "Tracked uppercase at 0.2em is reserved for the wordmark lockup and the Concept badge. It never appears as an eyebrow or kicker above a heading — a heading carries its own weight.",
+        "body": "Tracked uppercase at 0.2em is reserved for the wordmark lockup and the Concept badge. It never appears as an eyebrow or kicker above a heading \u2014 a heading carries its own weight.",
         "section": "typography"
       },
       {
@@ -348,7 +415,7 @@
       },
       {
         "name": "The Whole-Room Rule",
-        "body": "The scene's width is capped by the viewport height left over after the header and caption: max-width: calc((100dvh - 13rem) * 1.5). The room is the product, so it is never cropped and never scrolled past — it is sized to fit whole, and the chrome takes whatever is left.",
+        "body": "The scene's width is capped by the viewport height left over after the header and caption: max-width: calc((100dvh - 13rem) * 1.5). The room is the product, so it is never cropped and never scrolled past \u2014 it is sized to fit whole, and the chrome takes whatever is left.",
         "section": "layout"
       },
       {
@@ -364,20 +431,20 @@
     ],
     "dos": [
       "Do keep every saturated colour inside the scene's SVG. The chrome gets Ink, Ground, Surface, Cream, and Line.",
-      "Do cast shadows in Ink (rgba(43,39,33,…)), never in neutral black.",
+      "Do cast shadows in Ink (rgba(43,39,33,\u2026)), never in neutral black.",
       "Do give a new horizontal plane its skew from DESKTOP_ZONE's u and v vectors.",
-      "Do pair every state that matters with a mark and a word, not just a fill — the PRD requires it and the system is built around it.",
+      "Do pair every state that matters with a mark and a word, not just a fill \u2014 the PRD requires it and the system is built around it.",
       "Do set changing figures in tabular-nums.",
       "Do border a pill in both states so selection never shifts the layout.",
       "Do size the scene from leftover viewport height so the room always fits whole."
     ],
     "donts": [
       "Don't put a border and a shadow on the same surface.",
-      "Don't use #63aefd for anything except the Concept badge and text selection. It means \"Monis does not rent this\", and a second use dissolves that meaning. Known risk, accepted deliberately: blue is also Monis's badge colour for real products, so this badge can read as an endorsement at a glance. Its sentence is what disambiguates it — never ship the badge bare.",
+      "Don't use #63aefd for anything except the Concept badge and text selection. It means \"Monis does not rent this\", and a second use dissolves that meaning. Known risk, accepted deliberately: blue is also Monis's badge colour for real products, so this badge can read as an endorsement at a glance. Its sentence is what disambiguates it \u2014 never ship the badge bare.",
       "Don't set body copy in Ink Faint (#a79c8e). It is 2.7:1 on Surface and is for strokes and borders only.",
       "Don't introduce a second typeface, or use tracked uppercase as an eyebrow above a heading.",
       "Don't reach for a cool grey. Every neutral here is warm.",
-      "Don't apply a Zone's transform to an object's own group — translate to the projected point and draw upright.",
+      "Don't apply a Zone's transform to an object's own group \u2014 translate to the projected point and draw upright.",
       "Don't animate transforms inside the SVG. Per ADR-0001 they are not hardware-accelerated; transform motion belongs on div wrappers outside the scene, and motion inside it stays limited to opacity and attribute changes."
     ]
   }

@@ -19,6 +19,7 @@ This document is the baseline plan, and its body is never edited. Where developm
 | §20 Responsive Behavior | `DESIGN.md` → *Layout* | Superseded on one point. The catalog is a rail that drops beneath the scene below `lg` (1024px), not tabs or a bottom sheet. The sticky footer summary, tap-to-add, and scene prominence all stand. |
 | Brand and visual identity | `PRODUCT.md` → *Brand Commitments*, and `DESIGN.md` | Extended. The PRD is silent on brand; the real monis.rent identity — Inter, near-black on near-white, hairline pills, one cream fill — is now binding, and the full visual world is fixed by `DESIGN.md`. |
 | §27 8-Hour Implementation Strategy | [ADR-0002](docs/adr/0002-document-authority-and-the-design-workflow.md) | Extended. Tickets that change what the user sees carry `impeccable` steps. See `docs/agents/design-workflow.md`. |
+| §23 Suggested State Model | `CONTEXT.md`, and `src/workspace/types.ts` | Superseded in shape, kept in spirit — the state is still one reducer with no store library. `WorkspaceConfig` is split into a `Workspace` (the room) nested inside a `Rental` (the room plus delivery), because the Setup rate must be derivable from the room alone. `items`/`SelectedItem` are `placed`/`PlacedProduct`, whose quantity is its number of Positions rather than a second field that could disagree. `deliveryDate` is nullable, where null means "as soon as possible": the three routes are prerendered, so a date resolved while rendering is the build's date, which in production is a date in the past. |
 
 ---
 

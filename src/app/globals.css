@@ -43,4 +43,8 @@ body {
 :root {
   caret-color: var(--ink);
   accent-color: var(--ink);
+  /* The date picker and the select list are drawn by the browser, and they
+     follow this rather than the page. One light theme means one light picker,
+     whatever the visitor's OS is set to. */
+  color-scheme: light;
 }

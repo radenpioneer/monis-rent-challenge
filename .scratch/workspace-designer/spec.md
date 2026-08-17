@@ -229,6 +229,6 @@ No collision system is built. Overlap is tolerated; sensible default positions, 
 
 Work is split across sixteen tickets in `issues/`, each a vertical slice that is demoable on its own and each carrying its blocking edges. P0 is `01`–`11`. Accessibility (`11`) is P0, not polish, because the PRD lists it as such and because a configurator that can only be operated by dragging is not usable. P1 is `12`–`15`, cut in reverse order under time pressure per the PRD's own cut list. `16` is shipping and is not optional.
 
-`01` through `04` are closed. The frontier is `05`.
+`01` through `05` are closed. The frontier is `06`, with `07`, `09`, `12`, and `13` unblocked alongside it.
 
 Product assets are authored per slice rather than up front — each ticket draws only the Products it makes interactive. An earlier breakdown gathered all twelve into one ticket that gated the entire scene and whose cost was bounded by taste rather than logic; slicing vertically removes that gate. The residual risk is unchanged in kind but far smaller in blast radius: if a slice's assets run long, the honest lever is fewer accessories, not rougher drawings, since the PRD's cut order protects the visual preview above almost everything else.

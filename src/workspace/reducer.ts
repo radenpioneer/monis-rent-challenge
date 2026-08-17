@@ -1,3 +1,4 @@
+import type { AreaId } from "@/catalog/areas";
 import type { ChairId, DeskId, PlaceableId } from "@/catalog/products";
 import {
   accessoryPosition,
@@ -7,13 +8,19 @@ import {
   isMonitor,
   maxCopies,
 } from "./constraints";
-import { STARTER_WORKSPACE } from "./starter";
-import type { PlacedProduct, Position, Workspace } from "./types";
+import type { IsoDate } from "./dates";
+import { durationInRange, STARTER_RENTAL } from "./rental";
+import type { Cycle, PlacedProduct, Position, Rental, Workspace } from "./types";
 
 /**
- * Every product rule lives here, never in a click handler, so the rules are
- * readable and exercisable without running the app. Actions are domain verbs
- * and arrive slice by slice.
+ * Every rule about the Workspace and the Rental lives here, never in a click
+ * handler, so the rules are readable and exercisable without running the app.
+ * Actions are domain verbs and arrive slice by slice.
+ *
+ * The two rules that need something this function cannot hold sit beside it as
+ * pure predicates the interface calls: the monitor cap's reason in
+ * `constraints.ts`, and whether a delivery date has passed in `dates.ts`, which
+ * needs a clock. Both are still one function away from a test.
  *
  * Desk and chair are swapped rather than added and removed: there is no state
  * in which the Workspace has neither, so there is no action that could produce
@@ -23,8 +30,67 @@ export type WorkspaceAction =
   | { type: "swapDesk"; deskId: DeskId }
   | { type: "swapChair"; chairId: ChairId }
   | { type: "addProduct"; productId: PlaceableId }
-  | { type: "removeProduct"; productId: PlaceableId }
+  | { type: "removeProduct"; productId: PlaceableId };
+
+/**
+ * The whole dispatch surface: what the user does to the room, plus what they
+ * say about delivery. One reducer rather than two, because the room and its
+ * delivery details are one thing the user is composing.
+ */
+export type RentalAction =
+  | WorkspaceAction
+  | { type: "setArea"; areaId: AreaId }
+  /** A null date is "as soon as possible", which is what an untouched Rental holds. */
+  | { type: "setDeliveryDate"; date: IsoDate | null }
+  | { type: "setCycle"; cycle: Cycle }
+  | { type: "setDuration"; duration: number }
   | { type: "reset" };
+
+export function rentalReducer(rental: Rental, action: RentalAction): Rental {
+  switch (action.type) {
+    case "setArea":
+      return rental.areaId === action.areaId ? rental : { ...rental, areaId: action.areaId };
+
+    case "setDeliveryDate":
+      // Whether a date is in the past is not a fact this function can know —
+      // it has no clock, deliberately. Today is resolved at the one edge that
+      // has one and the refusal happens there, next to the input's own `min`.
+      return rental.deliveryDate === action.date
+        ? rental
+        : { ...rental, deliveryDate: action.date };
+
+    case "setCycle":
+      if (rental.cycle === action.cycle) return rental;
+
+      return {
+        ...rental,
+        cycle: action.cycle,
+        // A Duration the new Cycle cannot express drops back to one, so the
+        // user is never shown a total computed from something they didn't mean.
+        duration: durationInRange(rental.duration, action.cycle) ? rental.duration : 1,
+      };
+
+    case "setDuration":
+      // A Duration outside the range changes nothing, the same way a refused
+      // third monitor does. Nothing can reach here with one — the control only
+      // offers what the Cycle allows — so this is the guard behind that, not a
+      // message the user ever reads.
+      return durationInRange(action.duration, rental.cycle)
+        ? { ...rental, duration: action.duration }
+        : rental;
+
+    case "reset":
+      // Reset is a Rental action rather than a Workspace one: it returns the
+      // starter room *and* the default delivery details, which is what the PRD
+      // means by a default configuration.
+      return STARTER_RENTAL;
+
+    default: {
+      const workspace = workspaceReducer(rental.workspace, action);
+      return workspace === rental.workspace ? rental : { ...rental, workspace };
+    }
+  }
+}
 
 export function workspaceReducer(
   workspace: Workspace,
@@ -54,9 +120,6 @@ export function workspaceReducer(
       const placed = withoutCopy(workspace.placed, action.productId);
       return placed === workspace.placed ? workspace : { ...workspace, placed };
     }
-
-    case "reset":
-      return STARTER_WORKSPACE;
   }
 }
 

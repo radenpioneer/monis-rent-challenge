@@ -19,10 +19,11 @@ const WEEKS_COMPARED_TO_A_MONTH = 4;
 /**
  * What one copy of a Product costs for one Cycle. Demo pricing, USD.
  *
- * Private until something outside asks for it — the review breakdown will,
- * when it lists a rate against each line.
+ * Exported because a catalog card shows the same figure, and reading the rate
+ * off the Product in one place and through here in another is how the card and
+ * the breakdown would start to disagree.
  */
-function rateFor(productId: ProductId, cycle: Cycle): number {
+export function rateFor(productId: ProductId, cycle: Cycle): number {
   const product = getProduct(productId);
   return cycle === "weekly" ? product.weeklyRate : product.monthlyRate;
 }

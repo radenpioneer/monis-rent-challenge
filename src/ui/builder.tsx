@@ -1,40 +1,43 @@
 "use client";
 
-import Link from "next/link";
 import { WorkspaceScene } from "@/scene/workspace-scene";
 import { CatalogPanel } from "./catalog-panel";
+import { RentalPanel } from "./rental-panel";
+import { useRental } from "./rental-provider";
 import { SetupRatePanel } from "./setup-rate-panel";
-import { useWorkspace } from "./workspace-provider";
 
 export function Builder() {
-  const { workspace } = useWorkspace();
+  const { rental } = useRental();
 
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-16 sm:px-6 lg:flex-row lg:items-start">
       {/* The scene keeps its 3:2 aspect and stays whole on screen: its width is
-          capped by the height left over once the header and caption are placed. */}
-      <div className="flex min-w-0 flex-1 flex-col gap-4">
+          capped by the height left over once the header and caption are placed.
+          It sticks on the wide layout because the rail is taller than the
+          viewport once delivery is in it — the room is the interface, so it
+          stays on screen while the rail scrolls under it. The cap is what makes
+          this safe: a column sized from leftover height always fits. */}
+      <div className="flex min-w-0 flex-1 flex-col gap-4 lg:sticky lg:top-6 lg:self-start">
         <div className="mx-auto w-full max-w-[calc((100dvh-13rem)*1.5)] overflow-hidden rounded-3xl bg-surface shadow-[0_24px_60px_-28px_rgba(43,39,33,0.45)]">
-          <WorkspaceScene workspace={workspace} />
+          <WorkspaceScene workspace={rental.workspace} />
         </div>
-        <div className="flex flex-col items-center gap-2 text-center">
-          <p className="text-sm text-ink-muted">
-            Tap a card to swap, add, or remove — the room changes as you choose.
-          </p>
-          <Link
-            href="/review"
-            className="rounded-sm text-sm font-medium text-ink underline decoration-ink-faint underline-offset-4 transition-colors hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
-          >
-            Review setup
-          </Link>
-        </div>
+        <p className="text-center text-sm text-ink-muted">
+          Tap a card to swap, add, or remove — the room changes as you choose.
+        </p>
       </div>
 
-      {/* The rate leads the rail: it is level with the top of the scene, so the
-          price of the room is never something the user has to scroll to find. */}
+      {/* The rail reads in the order the questions arrive: what the room costs,
+          what is in it, then where it goes and for how long. The way out sits at
+          the end of that sequence rather than beside the scene.
+          The rate leads the rail and sticks there, so the price of the room is
+          never something the user has to scroll back up to find — the rail is
+          taller than the viewport now that delivery is in it. */}
       <div className="flex w-full flex-col gap-4 lg:max-w-sm">
-        <SetupRatePanel />
+        <div className="lg:sticky lg:top-6 lg:z-10">
+          <SetupRatePanel />
+        </div>
         <CatalogPanel />
+        <RentalPanel />
       </div>
     </div>
   );

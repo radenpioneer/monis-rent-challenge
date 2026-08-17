@@ -97,6 +97,24 @@ components:
     textColor: "{colors.surface}"
     rounded: "{rounded.pill}"
     padding: "6px 14px"
+  pill-choice:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink-muted}"
+    rounded: "{rounded.pill}"
+    padding: "6px 14px"
+  pill-choice-hover:
+    backgroundColor: "{colors.cream}"
+  pill-choice-selected:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.pill}"
+    padding: "6px 14px"
+  control-field:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.pill}"
+    padding: "0 16px"
+    height: "40px"
   badge-concept:
     backgroundColor: "{colors.signal}"
     textColor: "{colors.ink}"
@@ -196,13 +214,17 @@ A centred single column that becomes a two-part split at `lg` (1024px): the scen
 
 Containers: `72rem` (1152px) for the header, `80rem` (1280px) for the builder, `42rem` (672px) for the review and success screens. Horizontal padding steps `16px` → `24px` at `sm` (640px). Every screen ends on `64px` of bottom space so the last element never sits against the viewport edge.
 
-Rhythm runs on a 4px base, in practice `8 / 12 / 16 / 24`: `12px` inside a card between an image and its text, `16px` between cards and inside panels, `24px` between the scene and the rail. Groups are tight and the separations between them are generous — the catalog rail reads as three blocks (filters, products, disclaimer) rather than eleven evenly spaced elements.
+The rail holds three panels, in the order the user's questions arrive: what the room costs, what is in it, then where it goes and for how long. The way out of the builder sits at the end of that sequence rather than beside the scene.
+
+Rhythm runs on a 4px base, in practice `8 / 12 / 16 / 24`: `12px` inside a card between an image and its text, `16px` between cards and inside panels, `24px` between the scene and the rail. Groups are tight and the separations between them are generous — each panel reads as a few blocks rather than a stack of evenly spaced elements. Inside a form block, `8px` separates a label from its control and `16px` separates one block from the next, so proximity says which label belongs to which field.
 
 The scene itself is a single SVG on a `1200 × 800` viewBox (3:2), scaling fluidly with its container.
 
 ### Named Rules
 
 **The Whole-Room Rule.** The scene's width is capped by the viewport height left over after the header and caption: `max-width: calc((100dvh - 13rem) * 1.5)`. The room is the product, so it is never cropped and never scrolled past — it is sized to fit whole, and the chrome takes whatever is left.
+
+"Never scrolled past" is load-bearing on the wide layout, where the rail is taller than the viewport: the scene column is `sticky` from `lg` up, so the room stays on screen while the rail scrolls under it. The cap is what makes that safe — a column sized from leftover height always fits the viewport it sticks to.
 
 ## Elevation & Depth
 
@@ -257,6 +279,24 @@ Its selected state is deliberately over-specified — Cream fill, Ink border and
 
 The thumbnail is the same SVG component the scene draws, framed by the asset's own viewBox — a product cannot look like two different things in two places. It is `aria-hidden`: the card already names the product in text.
 
+### Choice Pill (radio)
+
+The chip's form doing a different job: picking one Area, or one Cycle. Same geometry as a Category Chip — full-round, `6px 14px`, bordered in both states, Ink fill when selected — and a different element underneath. A Category Chip is a `button` with `aria-pressed`, because filtering is an action; a Choice Pill wraps a real `radio`, because choosing an Area answers a question about the Rental.
+
+What that buys: one tab stop for the group, arrow keys between the options, and the selected one announced as checked. The input is visually hidden and the focus ring is drawn on the pill, so focus is never invisible.
+
+Every option in a set of five or fewer is shown at once. A dropdown here would hide four choices to save one line.
+
+### Field Control (select, date)
+
+For sets too large to show at once — a Duration runs to twelve — and for a date, which has a picker no design system can improve on. Native elements, restyled only where the closed control is visible: `40px` tall, full-round, Surface fill, Line hairline, Ink Faint on hover, Ink text at `1rem`.
+
+`1rem` rather than the Body `0.875rem` is deliberate: below 16px, iOS zooms the page when the field takes focus.
+
+A select carries an authored chevron in Ink Muted, with `appearance: none` on the control and the browser's own option list left alone. A date input keeps its native picker indicator, and `color-scheme: light` on the root keeps that picker in this product's one light theme whatever the visitor's OS is set to.
+
+Labels sit above their control in Title weight, never inside it as a placeholder. Help text sits below in Caption, and is where a refused value explains itself.
+
 ### Badge (concept)
 
 - **Style:** full-round pill, Signal fill, Ink label, Label typography. `6.3:1` contrast.
@@ -287,6 +327,8 @@ One treatment everywhere: `outline: 2px solid Ink` at a `2px` offset on controls
 - **Do** set changing figures in `tabular-nums`.
 - **Do** border a pill in both states so selection never shifts the layout.
 - **Do** size the scene from leftover viewport height so the room always fits whole.
+- **Do** reach for the native control when the choice is data: a real radio for a small set, a real select for a large one, a real date input for a date. Restyle the closed control, leave the picker alone.
+- **Do** theme what the browser draws — the caret, the selection, the date picker's `color-scheme` — from this palette.
 
 ### Don't:
 
