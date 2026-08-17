@@ -4,8 +4,19 @@ import { CompactTaskChair } from "./compact-task-chair";
 import { DESK_VIEW_BOX } from "./desk-surface";
 import { ElectricalAdjustableDesk } from "./electrical-adjustable-desk";
 import { ErgonomicOfficeChair } from "./ergonomic-office-chair";
+import { GamingMonitor34, GAMING_MONITOR_34_VIEW_BOX } from "./gaming-monitor-34";
+import { LaptopStand, LAPTOP_STAND_VIEW_BOX } from "./laptop-stand";
 import { MechanicalAdjustableDesk } from "./mechanical-adjustable-desk";
 import { MissingAsset } from "./missing-asset";
+import {
+  MultimediaMonitor27,
+  MULTIMEDIA_MONITOR_27_VIEW_BOX,
+} from "./multimedia-monitor-27";
+import { MxKeyboard, MX_KEYBOARD_VIEW_BOX } from "./mx-keyboard";
+import { MxMasterMouse, MX_MASTER_MOUSE_VIEW_BOX } from "./mx-master-mouse";
+import { OfficeMonitor24, OFFICE_MONITOR_24_VIEW_BOX } from "./office-monitor-24";
+import { Plant, PLANT_VIEW_BOX } from "./plant";
+import { SmartDeskLamp, SMART_DESK_LAMP_VIEW_BOX } from "./smart-desk-lamp";
 
 /**
  * Hand-authored SVG, one per Product, resolved by Product id. The same
@@ -34,6 +45,38 @@ const ASSETS: Partial<Record<ProductId, Asset>> = {
   "compact-task-chair": {
     Component: CompactTaskChair,
     viewBox: "-85 -284 155 306",
+  },
+  "office-monitor-24": {
+    Component: OfficeMonitor24,
+    viewBox: OFFICE_MONITOR_24_VIEW_BOX,
+  },
+  "multimedia-monitor-27": {
+    Component: MultimediaMonitor27,
+    viewBox: MULTIMEDIA_MONITOR_27_VIEW_BOX,
+  },
+  "gaming-monitor-34": {
+    Component: GamingMonitor34,
+    viewBox: GAMING_MONITOR_34_VIEW_BOX,
+  },
+  "smart-desk-lamp": {
+    Component: SmartDeskLamp,
+    viewBox: SMART_DESK_LAMP_VIEW_BOX,
+  },
+  "mx-keyboard": {
+    Component: MxKeyboard,
+    viewBox: MX_KEYBOARD_VIEW_BOX,
+  },
+  "mx-master-mouse": {
+    Component: MxMasterMouse,
+    viewBox: MX_MASTER_MOUSE_VIEW_BOX,
+  },
+  "laptop-stand": {
+    Component: LaptopStand,
+    viewBox: LAPTOP_STAND_VIEW_BOX,
+  },
+  plant: {
+    Component: Plant,
+    viewBox: PLANT_VIEW_BOX,
   },
 };
 

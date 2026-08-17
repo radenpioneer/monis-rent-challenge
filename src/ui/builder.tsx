@@ -18,7 +18,7 @@ export function Builder() {
         </div>
         <div className="flex flex-col items-center gap-2 text-center">
           <p className="text-sm text-ink-muted">
-            Swap the desk or the chair — the room changes as you choose.
+            Tap a card to swap, add, or remove — the room changes as you choose.
           </p>
           <Link
             href="/review"

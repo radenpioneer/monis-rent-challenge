@@ -7,42 +7,69 @@ import {
   productsInCategory,
   type CatalogProduct,
 } from "@/catalog/products";
+import {
+  addRefusal,
+  copiesOf,
+  monitorCount,
+  MONITOR_LIMIT,
+  MONITOR_LIMIT_REASON,
+} from "@/workspace/constraints";
 import type { WorkspaceAction } from "@/workspace/reducer";
 import type { Workspace } from "@/workspace/types";
-import { ProductCard } from "./product-card";
+import { ProductCard, type CardOffer } from "./product-card";
 import { useWorkspace } from "./workspace-provider";
 
 const CATEGORIES = browsableCategories();
+const MONITOR_NOTICE_ID = "monitor-limit";
 
 /**
  * What a card offers for a Product, decided once per Category rather than in
- * several places that could disagree: whether it is already in the Workspace,
- * what the card offers to do about it, and the action that does it.
+ * several places that could disagree.
  *
  * Desks and chairs are the two Categories that are always exactly one, so the
- * offer is a swap — there is no action here that could leave the room with
- * nothing to sit at. Later slices answer this for the Categories that are
- * counted instead.
+ * offer is a swap — no action here could leave the room with nothing to sit at.
+ * Monitors are the one Category with a real quantity, so they count. Everything
+ * else is wanted once, so it toggles.
  */
 function offerFor(
   product: CatalogProduct,
   workspace: Workspace,
-): { selected: boolean; actionLabel: string; action: WorkspaceAction | null } {
+  dispatch: (action: WorkspaceAction) => void,
+): CardOffer {
   switch (product.category) {
     case "desk":
       return {
+        kind: "swap",
         selected: workspace.deskId === product.id,
-        actionLabel: "Swap in",
-        action: { type: "swapDesk", deskId: product.id },
+        onActivate: () => dispatch({ type: "swapDesk", deskId: product.id }),
       };
     case "chair":
       return {
+        kind: "swap",
         selected: workspace.chairId === product.id,
-        actionLabel: "Swap in",
-        action: { type: "swapChair", chairId: product.id },
+        onActivate: () => dispatch({ type: "swapChair", chairId: product.id }),
       };
-    default:
-      return { selected: false, actionLabel: "", action: null };
+    case "monitor":
+      return {
+        kind: "count",
+        count: copiesOf(workspace.placed, product.id),
+        limitReason: addRefusal(workspace, product.id),
+        limitNoticeId: MONITOR_NOTICE_ID,
+        onAdd: () => dispatch({ type: "addProduct", productId: product.id }),
+        onRemove: () => dispatch({ type: "removeProduct", productId: product.id }),
+      };
+    case "accessory": {
+      const placed = copiesOf(workspace.placed, product.id) > 0;
+      return {
+        kind: "toggle",
+        placed,
+        onActivate: () =>
+          dispatch({
+            type: placed ? "removeProduct" : "addProduct",
+            productId: product.id,
+          }),
+      };
+    }
   }
 }
 
@@ -73,27 +100,36 @@ export function CatalogPanel() {
         ))}
       </div>
 
+      {category === "monitor" ? <MonitorLimitNotice workspace={workspace} /> : null}
+
       <ul className="flex flex-col gap-3">
-        {productsInCategory(category).map((product) => {
-          const offer = offerFor(product, workspace);
-          return (
-            <li key={product.id}>
-              <ProductCard
-                product={product}
-                selected={offer.selected}
-                actionLabel={offer.actionLabel}
-                onSelect={() => {
-                  if (offer.action) dispatch(offer.action);
-                }}
-              />
-            </li>
-          );
-        })}
+        {productsInCategory(category).map((product) => (
+          <li key={product.id}>
+            <ProductCard product={product} offer={offerFor(product, workspace, dispatch)} />
+          </li>
+        ))}
       </ul>
 
       <p className="text-xs text-ink-muted">
         Demo pricing — invented for this concept, not a real Monis quote.
       </p>
     </section>
+  );
+}
+
+/**
+ * The monitor cap, stated before it is reached rather than only once it bites.
+ * At the limit it becomes the reducer's own refusal sentence, so the rule the
+ * user reads is the rule the Workspace enforces.
+ */
+function MonitorLimitNotice({ workspace }: { workspace: Workspace }) {
+  const count = monitorCount(workspace.placed);
+
+  return (
+    <p id={MONITOR_NOTICE_ID} aria-live="polite" className="text-xs text-ink-muted">
+      {count >= MONITOR_LIMIT
+        ? MONITOR_LIMIT_REASON
+        : `${count} of ${MONITOR_LIMIT} monitors.`}
+    </p>
   );
 }

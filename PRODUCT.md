@@ -97,7 +97,7 @@ The PRD asks for a **conceptual reimagination** of Monis rather than a pixel-for
 - Monis's real furniture catalog lists **exactly one chair**. The Compact Task Chair is a concept product and must be labelled as not currently rentable.
 - Monis lists **no plants**. The Plant is a concept/decorative item and carries the same labelling duty.
 - **No logo file, no brand guideline, and no product photography are in this repo.** Every Product is drawn as hand-authored SVG in `src/catalog/assets/`. Nothing here may claim to be an official Monis asset.
-- The descriptions currently in `src/catalog/products.ts` are written for this project, not Monis copy.
+- `src/catalog/products.ts` carries the ten names and descriptors above verbatim. The two Products with no row in that table — the Compact Task Chair and the Plant — carry copy written for this project, and must never be given copy that imitates the Monis voice around them.
 
 **Deliberate divergences from the real business, which must stay visible as such.**
 

@@ -12,14 +12,14 @@ Every Product authored here carries its real Monis name and descriptor, taken ve
 
 **Status:** ready-for-agent
 
-- [ ] Every remaining Product in the catalog can be added and removed by tapping its card
-- [ ] Added Products appear immediately in the scene at a sensible default position
-- [ ] Two monitors do not overlap by default
-- [ ] Different monitor models can be combined
-- [ ] A third monitor is refused, state is unchanged, and the reason is shown
-- [ ] Removing a Product removes both the object and its stored position
-- [ ] Swapping the desk afterwards leaves every added Product and its position untouched
-- [ ] The plant is labelled as a concept Product
-- [ ] Every Product uses its real Monis name and descriptor from PRODUCT.md, verbatim
-- [ ] Descriptions written for this project read as this project's copy, never as Monis copy
-- [ ] The longest Product name still lays out cleanly on a card at mobile width
+- [x] Every remaining Product in the catalog can be added and removed by tapping its card
+- [x] Added Products appear immediately in the scene at a sensible default position
+- [x] Two monitors do not overlap by default
+- [x] Different monitor models can be combined
+- [x] A third monitor is refused, state is unchanged, and the reason is shown
+- [x] Removing a Product removes both the object and its stored position
+- [x] Swapping the desk afterwards leaves every added Product and its position untouched
+- [x] The plant is labelled as a concept Product
+- [x] Every Product uses its real Monis name and descriptor from PRODUCT.md, verbatim
+- [x] Descriptions written for this project read as this project's copy, never as Monis copy
+- [x] The longest Product name still lays out cleanly on a card at mobile width

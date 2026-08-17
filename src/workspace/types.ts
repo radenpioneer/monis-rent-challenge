@@ -1,4 +1,4 @@
-import type { ChairId, DeskId, ProductId } from "@/catalog/products";
+import type { ChairId, DeskId, PlaceableId } from "@/catalog/products";
 
 /** A normalized coordinate in the range 0..1, resolved against a Zone. */
 export type Position = { x: number; y: number };
@@ -6,9 +6,12 @@ export type Position = { x: number; y: number };
 /**
  * One Product present in the Workspace.
  * Quantity is `positions.length` — one Position per copy.
+ *
+ * The id is a `PlaceableId`, so the desk and the chair cannot appear here at
+ * all: they live on the Workspace itself and are swapped, never placed.
  */
 export type PlacedProduct = {
-  productId: ProductId;
+  productId: PlaceableId;
   positions: Position[];
 };
 
