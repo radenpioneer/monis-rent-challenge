@@ -28,27 +28,27 @@ export function ProductCard({
       type="button"
       aria-pressed={selected}
       onClick={onSelect}
-      className={`flex w-full gap-3 rounded-2xl border bg-white p-3 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 ${
+      className={`flex w-full gap-3 rounded-2xl border p-3 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
         selected
-          ? "border-emerald-700 ring-2 ring-emerald-700/25"
-          : "border-stone-200 hover:border-stone-300 hover:bg-stone-50"
+          ? "border-ink bg-cream ring-1 ring-ink"
+          : "border-line bg-surface hover:border-ink-faint hover:bg-cream"
       }`}
     >
-      <span className="grid size-20 shrink-0 place-items-center overflow-hidden rounded-xl bg-stone-100 p-1.5">
+      <span className="grid size-20 shrink-0 place-items-center overflow-hidden rounded-xl bg-ground p-1.5">
         <ProductThumbnail productId={product.id} />
       </span>
 
       <span className="flex min-w-0 flex-1 flex-col gap-1">
-        <span className="text-sm font-semibold text-stone-900">{product.name}</span>
+        <span className="text-sm font-semibold text-ink">{product.name}</span>
 
-        <span className="text-xs leading-snug text-stone-500">{product.description}</span>
+        <span className="text-xs leading-snug text-ink-muted">{product.description}</span>
 
         {product.concept ? (
           <span className="mt-0.5 flex items-center gap-1.5">
-            <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-amber-900">
+            <span className="rounded-full bg-signal px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-ink">
               Concept
             </span>
-            <span className="text-[0.7rem] text-amber-800">
+            <span className="text-[0.7rem] text-ink-muted">
               Not rented by Monis today
             </span>
           </span>
@@ -57,7 +57,7 @@ export function ProductCard({
         <span className="mt-1 flex items-baseline justify-between gap-2">
           <span
             className={`text-xs font-medium ${
-              selected ? "text-emerald-800" : "text-stone-400"
+              selected ? "text-ink" : "text-ink-muted"
             }`}
           >
             {selected ? (
@@ -83,7 +83,7 @@ export function ProductCard({
               actionLabel
             )}
           </span>
-          <span className="shrink-0 text-sm font-medium tabular-nums text-stone-700">
+          <span className="shrink-0 text-sm font-medium tabular-nums text-ink">
             {formatWeeklyRate(product.weeklyRate)}
           </span>
         </span>

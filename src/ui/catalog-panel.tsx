@@ -53,7 +53,7 @@ export function CatalogPanel() {
   return (
     <section
       aria-label="Product catalog"
-      className="flex flex-col gap-4 rounded-3xl bg-white p-4 shadow-[0_18px_46px_-30px_rgba(43,39,33,0.5)] ring-1 ring-stone-900/5"
+      className="flex flex-col gap-4 rounded-3xl bg-surface p-4 shadow-[0_18px_46px_-30px_rgba(43,39,33,0.5)]"
     >
       <div className="flex flex-wrap gap-2" role="group" aria-label="Category">
         {CATEGORIES.map((option) => (
@@ -62,10 +62,10 @@ export function CatalogPanel() {
             type="button"
             aria-pressed={option === category}
             onClick={() => setCategory(option)}
-            className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 ${
+            className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
               option === category
-                ? "bg-stone-900 text-white"
-                : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                ? "border-ink bg-ink text-surface"
+                : "border-line bg-surface text-ink-muted hover:border-ink-faint hover:bg-cream"
             }`}
           >
             {CATEGORY_LABELS[option]}
@@ -91,7 +91,7 @@ export function CatalogPanel() {
         })}
       </ul>
 
-      <p className="text-xs text-stone-400">
+      <p className="text-xs text-ink-muted">
         Demo pricing — invented for this concept, not a real Monis quote.
       </p>
     </section>

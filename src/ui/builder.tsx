@@ -13,16 +13,16 @@ export function Builder() {
       {/* The scene keeps its 3:2 aspect and stays whole on screen: its width is
           capped by the height left over once the header and caption are placed. */}
       <div className="flex min-w-0 flex-1 flex-col gap-4">
-        <div className="mx-auto w-full max-w-[calc((100dvh-13rem)*1.5)] overflow-hidden rounded-3xl bg-white shadow-[0_24px_60px_-28px_rgba(43,39,33,0.45)] ring-1 ring-stone-900/5">
+        <div className="mx-auto w-full max-w-[calc((100dvh-13rem)*1.5)] overflow-hidden rounded-3xl bg-surface shadow-[0_24px_60px_-28px_rgba(43,39,33,0.45)]">
           <WorkspaceScene workspace={workspace} />
         </div>
         <div className="flex flex-col items-center gap-2 text-center">
-          <p className="text-sm text-stone-600">
+          <p className="text-sm text-ink-muted">
             Swap the desk or the chair — the room changes as you choose.
           </p>
           <Link
             href="/review"
-            className="text-sm font-medium text-emerald-800 underline underline-offset-4 hover:text-emerald-900"
+            className="rounded-sm text-sm font-medium text-ink underline decoration-ink-faint underline-offset-4 transition-colors hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
           >
             Review setup
           </Link>
