@@ -1,4 +1,4 @@
-import type { ProductId } from "@/catalog/products";
+import type { ChairId, DeskId, ProductId } from "@/catalog/products";
 
 /** A normalized coordinate in the range 0..1, resolved against a Zone. */
 export type Position = { x: number; y: number };
@@ -15,10 +15,15 @@ export type PlacedProduct = {
 /**
  * The user's current composition. Holds no delivery or pricing information —
  * those belong to the Rental.
+ *
+ * The desk and chair are single ids rather than entries in `placed`, which is
+ * what makes "exactly one of each, never removable" unrepresentable otherwise.
+ * Narrowing them to their Category's ids puts the same guarantee on the
+ * Product itself: a chair id cannot be stored as the desk.
  */
 export type Workspace = {
-  deskId: ProductId;
-  chairId: ProductId;
+  deskId: DeskId;
+  chairId: ChairId;
   chairPosition: Position;
   placed: PlacedProduct[];
 };

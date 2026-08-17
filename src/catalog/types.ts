@@ -14,4 +14,12 @@ export type Product = {
   category: Category;
   description: string;
   placement: Placement;
+  /** Demo pricing, USD per week. */
+  weeklyRate: number;
+  /**
+   * A Product Monis does not currently rent. Rendered with a visible label so
+   * it is never mistaken for real inventory. Required rather than optional, so
+   * every catalog entry states which side of that line it falls on.
+   */
+  concept: boolean;
 };
