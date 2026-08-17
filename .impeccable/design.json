@@ -208,7 +208,10 @@
       }
     },
     "typographyMeta": {
-      "headline": { "displayName": "Headline", "purpose": "Page titles. One per screen." },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page titles, and the live Setup rate, which is the builder's page title in all but grammar. One per screen."
+      },
       "title": { "displayName": "Title", "purpose": "Product names and labels naming a thing being chosen between." },
       "body": { "displayName": "Body", "purpose": "Running copy and instructions." },
       "caption": { "displayName": "Caption", "purpose": "Descriptions, disclaimers, secondary help. Always Ink Muted." },

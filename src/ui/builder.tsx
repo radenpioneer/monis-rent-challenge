@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { WorkspaceScene } from "@/scene/workspace-scene";
 import { CatalogPanel } from "./catalog-panel";
+import { SetupRatePanel } from "./setup-rate-panel";
 import { useWorkspace } from "./workspace-provider";
 
 export function Builder() {
@@ -29,7 +30,10 @@ export function Builder() {
         </div>
       </div>
 
-      <div className="w-full lg:max-w-sm">
+      {/* The rate leads the rail: it is level with the top of the scene, so the
+          price of the room is never something the user has to scroll to find. */}
+      <div className="flex w-full flex-col gap-4 lg:max-w-sm">
+        <SetupRatePanel />
         <CatalogPanel />
       </div>
     </div>

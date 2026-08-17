@@ -10,9 +10,9 @@ The Setup rate is computed from the Workspace alone, with no delivery or duratio
 
 **Status:** ready-for-agent
 
-- [ ] The Setup rate is visible without scrolling on desktop
-- [ ] It changes immediately on add, remove, and swap
-- [ ] It is derived from the Workspace alone
-- [ ] Every Product's monthly rate is cheaper than four of its weekly cycles
-- [ ] A "Demo pricing" label sits wherever a price appears
-- [ ] No tax, deposit, coupon, insurance, or processing fee appears anywhere
+- [x] The Setup rate is visible without scrolling on desktop
+- [x] It changes immediately on add, remove, and swap
+- [x] It is derived from the Workspace alone
+- [x] Every Product's monthly rate is cheaper than four of its weekly cycles
+- [x] A "Demo pricing" label sits wherever a price appears
+- [x] No tax, deposit, coupon, insurance, or processing fee appears anywhere

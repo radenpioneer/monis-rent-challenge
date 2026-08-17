@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { ProductThumbnail } from "@/catalog/assets";
 import type { CatalogProduct } from "@/catalog/products";
-import { formatWeeklyRate } from "@/pricing/format";
+import { formatRate } from "@/pricing/format";
 
 /**
  * What this card offers for its Product. One shape per product rule, so the
@@ -161,7 +161,7 @@ function Contents({ product, action }: { product: CatalogProduct; action: ReactN
         <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1.5">
           {action}
           <span className="ml-auto shrink-0 text-sm font-medium tabular-nums text-ink">
-            {formatWeeklyRate(product.weeklyRate)}
+            {formatRate(product.weeklyRate, "weekly")}
           </span>
         </span>
       </span>

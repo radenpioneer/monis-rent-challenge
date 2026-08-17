@@ -30,3 +30,12 @@ export type Workspace = {
   chairPosition: Position;
   placed: PlacedProduct[];
 };
+
+/**
+ * The recurring billing period a Rental is priced in.
+ *
+ * It belongs to the Rental rather than the Workspace — a Workspace has no
+ * Cycle, which is why the Setup rate takes one as an argument instead of
+ * reading it off the room. The Rental that holds it arrives with delivery.
+ */
+export type Cycle = "weekly" | "monthly";

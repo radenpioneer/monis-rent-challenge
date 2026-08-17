@@ -176,7 +176,7 @@ There is no second face. Monis sets its own site in Inter and the configurator m
 
 ### Hierarchy
 
-- **Headline** (600, 1.5rem/24px, 1.2, -0.025em): page titles — "Review setup", "Your workspace is reserved". One per screen.
+- **Headline** (600, 1.5rem/24px, 1.2, -0.025em): page titles — "Review setup", "Your workspace is reserved" — and the live Setup rate, which is the builder's page title in all but grammar. One per screen.
 - **Title** (600, 0.875rem/14px, 1.4): product names on catalog cards, and any label that names a thing the user is choosing between.
 - **Body** (400, 0.875rem/14px, 1.5): running copy and instructions.
 - **Caption** (400, 0.75rem/12px, 1.375): product descriptions, disclaimers, secondary help. Always in Ink Muted.

@@ -17,6 +17,11 @@ export type Product = {
   /** Demo pricing, USD per week. */
   weeklyRate: number;
   /**
+   * Demo pricing, USD per month. Always less than four weekly cycles, so the
+   * longer commitment is worth making rather than merely available.
+   */
+  monthlyRate: number;
+  /**
    * A Product Monis does not currently rent. Rendered with a visible label so
    * it is never mistaken for real inventory. Required rather than optional, so
    * every catalog entry states which side of that line it falls on.

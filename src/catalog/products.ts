@@ -12,7 +12,10 @@ import type { Category, Product } from "./types";
  * theirs is written for this project — which is why neither imitates the voice
  * of the entries around it.
  *
- * Every rate is demo pricing, invented for this concept.
+ * Every rate is demo pricing, invented for this concept. Monthly rates are set
+ * at roughly three and a half weeks, which is the rule the whole catalog obeys:
+ * a month always costs less than four weekly cycles, so a longer stay is a
+ * better deal on every Product rather than on a chosen few.
  */
 export const PRODUCTS = {
   "electrical-adjustable-desk": {
@@ -22,6 +25,7 @@ export const PRODUCTS = {
     description: "Electric height adjustment (70-118cm), smooth and quiet",
     placement: "fixed",
     weeklyRate: 12,
+    monthlyRate: 40,
     concept: false,
   },
   "mechanical-adjustable-desk": {
@@ -31,6 +35,7 @@ export const PRODUCTS = {
     description: "Effortlessly adjust the height from 70-120cm",
     placement: "fixed",
     weeklyRate: 9,
+    monthlyRate: 30,
     concept: false,
   },
   "ergonomic-office-chair": {
@@ -40,6 +45,7 @@ export const PRODUCTS = {
     description: "Breathable mesh back, high-density molded foam seat",
     placement: "floor",
     weeklyRate: 8,
+    monthlyRate: 27,
     concept: false,
   },
   "compact-task-chair": {
@@ -49,6 +55,7 @@ export const PRODUCTS = {
     description: "Armless and small-footprint, for a corner of a rented room.",
     placement: "floor",
     weeklyRate: 5,
+    monthlyRate: 17,
     concept: true,
   },
   "office-monitor-24": {
@@ -58,6 +65,7 @@ export const PRODUCTS = {
     description: "Xiaomi Mi 23.8 Desktop Monitor A24i at 100 Hz",
     placement: "desktop",
     weeklyRate: 7,
+    monthlyRate: 24,
     concept: false,
   },
   "multimedia-monitor-27": {
@@ -67,6 +75,7 @@ export const PRODUCTS = {
     description: 'Redmi 27" monitor with USB-C or HDMI connection',
     placement: "desktop",
     weeklyRate: 11,
+    monthlyRate: 37,
     concept: false,
   },
   "gaming-monitor-34": {
@@ -76,6 +85,7 @@ export const PRODUCTS = {
     description: 'Xiaomi Mi Curved 34" Gaming Monitor at 180Hz',
     placement: "desktop",
     weeklyRate: 16,
+    monthlyRate: 54,
     concept: false,
   },
   "smart-desk-lamp": {
@@ -85,6 +95,7 @@ export const PRODUCTS = {
     description: "520 lm luminous flux, Ra 90 high color rendering",
     placement: "desktop",
     weeklyRate: 3,
+    monthlyRate: 10,
     concept: false,
   },
   "mx-keyboard": {
@@ -94,6 +105,7 @@ export const PRODUCTS = {
     description: "Up to 10 meters wireless range, Easy-Switch™ keys",
     placement: "desktop",
     weeklyRate: 4,
+    monthlyRate: 13,
     concept: false,
   },
   "mx-master-mouse": {
@@ -103,6 +115,7 @@ export const PRODUCTS = {
     description: "Compatible with Windows and macOS, wireless connection",
     placement: "desktop",
     weeklyRate: 3,
+    monthlyRate: 10,
     concept: false,
   },
   "laptop-stand": {
@@ -112,6 +125,7 @@ export const PRODUCTS = {
     description: "With all laptops from 10''-17\", raises and angles",
     placement: "desktop",
     weeklyRate: 2,
+    monthlyRate: 7,
     concept: false,
   },
   plant: {
@@ -121,6 +135,7 @@ export const PRODUCTS = {
     description: "A little life in the corner, for the months you are here.",
     placement: "floor",
     weeklyRate: 2,
+    monthlyRate: 7,
     concept: true,
   },
 } as const satisfies Record<string, Product>;
