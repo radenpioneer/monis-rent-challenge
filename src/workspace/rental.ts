@@ -73,6 +73,25 @@ export function deliveryDateOf(rental: Rental, today: IsoDate | null): IsoDate |
 }
 
 /**
+ * The date a Rental finishes, counted in the Cycle the customer selected.
+ * Keeping this beside `describeDuration` means the review screen renders a
+ * Rental fact rather than reimplementing calendar arithmetic in its JSX.
+ */
+export function rentalEndDate(
+  deliveryDate: IsoDate | null,
+  duration: number,
+  cycle: Cycle,
+): IsoDate | null {
+  if (!deliveryDate) return null;
+
+  const date = new Date(`${deliveryDate}T12:00:00`);
+  if (cycle === "weekly") date.setDate(date.getDate() + duration * 7);
+  else date.setMonth(date.getMonth() + duration);
+
+  return date.toLocaleDateString("en-CA");
+}
+
+/**
  * The Rental a first-time user is given, and the one Reset returns to.
  *
  * Canggu because it is where this product's user is most likely to be, weekly

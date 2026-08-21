@@ -12,11 +12,11 @@ Opening this screen directly, without having built anything, shows the starter W
 
 **Status:** ready-for-agent
 
-- [ ] Every Product in the Workspace is listed with the correct quantity
-- [ ] A visual snapshot of the room appears
-- [ ] Area, delivery date, Cycle, and Duration are all shown
-- [ ] The breakdown separates setup subtotal, duration, and delivery fee
-- [ ] The total equals the Setup rate times the Duration plus delivery, and nothing else
-- [ ] Returning to the builder preserves the Workspace exactly
-- [ ] No payment fields appear anywhere
-- [ ] Opening the screen cold shows the starter Workspace rather than an error
+- [x] Every Product in the Workspace is listed with the correct quantity
+- [x] A visual snapshot of the room appears
+- [x] Area, delivery date, Cycle, and Duration are all shown
+- [x] The breakdown separates setup subtotal, duration, and delivery fee
+- [x] The total equals the Setup rate times the Duration plus delivery, and nothing else
+- [x] Returning to the builder preserves the Workspace exactly
+- [x] No payment fields appear anywhere
+- [x] Opening the screen cold shows the starter Workspace rather than an error

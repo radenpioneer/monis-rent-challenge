@@ -137,10 +137,13 @@ export function WorkspaceScene({
   workspace,
   onMoveChair,
   onMoveProduct,
+  interactive = true,
 }: {
   workspace: Workspace;
   onMoveChair: (position: Position) => void;
   onMoveProduct: (productId: PlaceableId, copy: number, position: Position) => void;
+  /** A review screen needs the same room as a visual record, not a second drag surface. */
+  interactive?: boolean;
 }) {
   const dragging = useRef<Dragging | null>(null);
 
@@ -214,7 +217,7 @@ export function WorkspaceScene({
       </g>
 
       {floor.map((copy) =>
-        copy.copy === undefined ? (
+        copy.copy === undefined && interactive ? (
           <DraggableAsset
             key={copy.key}
             transform={at(copy.point)}
@@ -230,7 +233,7 @@ export function WorkspaceScene({
       )}
 
       {onDesktop.map((copy) =>
-        isMonitor(copy.productId) ? (
+        isMonitor(copy.productId) && interactive ? (
           <DraggableAsset
             key={copy.key}
             transform={at(copy.point)}
