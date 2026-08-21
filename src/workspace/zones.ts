@@ -74,3 +74,11 @@ export function unproject(zone: Zone, point: Point): Position {
     y: (zone.u.x * dy - zone.u.y * dx) / determinant,
   };
 }
+
+/** Keep a Position inside the Zone that resolves it. */
+export function clampPosition(position: Position): Position {
+  return {
+    x: Math.min(1, Math.max(0, position.x)),
+    y: Math.min(1, Math.max(0, position.y)),
+  };
+}

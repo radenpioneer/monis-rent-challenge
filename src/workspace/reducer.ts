@@ -11,6 +11,7 @@ import {
 import type { IsoDate } from "./dates";
 import { durationInRange, STARTER_RENTAL } from "./rental";
 import type { Cycle, PlacedProduct, Position, Rental, Workspace } from "./types";
+import { clampPosition } from "./zones";
 
 /**
  * Every rule about the Workspace and the Rental lives here, never in a click
@@ -30,7 +31,9 @@ export type WorkspaceAction =
   | { type: "swapDesk"; deskId: DeskId }
   | { type: "swapChair"; chairId: ChairId }
   | { type: "addProduct"; productId: PlaceableId }
-  | { type: "removeProduct"; productId: PlaceableId };
+  | { type: "removeProduct"; productId: PlaceableId }
+  | { type: "moveChair"; position: Position }
+  | { type: "moveProduct"; productId: PlaceableId; copy: number; position: Position };
 
 /**
  * The whole dispatch surface: what the user does to the room, plus what they
@@ -120,7 +123,37 @@ export function workspaceReducer(
       const placed = withoutCopy(workspace.placed, action.productId);
       return placed === workspace.placed ? workspace : { ...workspace, placed };
     }
+
+    case "moveChair": {
+      const chairPosition = clampPosition(action.position);
+      return samePosition(workspace.chairPosition, chairPosition)
+        ? workspace
+        : { ...workspace, chairPosition };
+    }
+
+    case "moveProduct": {
+      const position = clampPosition(action.position);
+      const placed = workspace.placed.map((entry) => {
+        if (entry.productId !== action.productId || !entry.positions[action.copy]) return entry;
+        if (samePosition(entry.positions[action.copy], position)) return entry;
+
+        return {
+          ...entry,
+          positions: entry.positions.map((current, index) =>
+            index === action.copy ? position : current,
+          ),
+        };
+      });
+
+      return placed.every((entry, index) => entry === workspace.placed[index])
+        ? workspace
+        : { ...workspace, placed };
+    }
   }
+}
+
+function samePosition(a: Position, b: Position): boolean {
+  return a.x === b.x && a.y === b.y;
 }
 
 /**

@@ -7,7 +7,7 @@ import { useRental } from "./rental-provider";
 import { SetupRatePanel } from "./setup-rate-panel";
 
 export function Builder() {
-  const { rental } = useRental();
+  const { rental, dispatch } = useRental();
 
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-16 sm:px-6 lg:flex-row lg:items-start">
@@ -19,10 +19,16 @@ export function Builder() {
           this safe: a column sized from leftover height always fits. */}
       <div className="flex min-w-0 flex-1 flex-col gap-4 lg:sticky lg:top-6 lg:self-start">
         <div className="mx-auto w-full max-w-[calc((100dvh-13rem)*1.5)] overflow-hidden rounded-3xl bg-surface shadow-[0_24px_60px_-28px_rgba(43,39,33,0.45)]">
-          <WorkspaceScene workspace={rental.workspace} />
+          <WorkspaceScene
+            workspace={rental.workspace}
+            onMoveChair={(position) => dispatch({ type: "moveChair", position })}
+            onMoveProduct={(productId, copy, position) =>
+              dispatch({ type: "moveProduct", productId, copy, position })
+            }
+          />
         </div>
         <p className="text-center text-sm text-ink-muted">
-          Tap a card to swap, add, or remove — the room changes as you choose.
+          Drag the chair or a monitor to make the room your own.
         </p>
       </div>
 
