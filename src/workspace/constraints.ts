@@ -25,7 +25,7 @@ export const MONITOR_LIMIT = 2;
  * once and cannot drift into two different explanations.
  */
 export const MONITOR_LIMIT_REASON =
-  "Two monitors is the maximum — remove one to add another.";
+  "Maximum 2 monitors per workspace. Remove one to add another.";
 
 /**
  * A lone monitor sits centred on the desk. A pair takes the two slots, which

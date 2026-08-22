@@ -14,13 +14,13 @@ Once it is deployed and green, the Cache Components flag may be trialled — it 
 
 **Design:** `polish`, across every screen rather than one target
 
-**Status:** ready-for-agent
+**Status:** ready-for-human
 
 - [ ] Every PRD edge case walked by hand, reading the PRD's `## Amendments` table first
 - [ ] Every PRD acceptance criterion walked by hand, as amended
-- [ ] TypeScript and lint are clean
+- [x] TypeScript and lint are clean
 - [ ] The public URL works cold in a private window with no setup
 - [ ] Source is on GitHub and `desent-bot` has read collaborator access
-- [ ] The README covers approach, product decisions, design decisions, technical decisions, trade-offs, and next steps
-- [ ] The README's account of what changed during the build is drawn from the PRD's `## Amendments` table
+- [x] The README covers approach, product decisions, design decisions, technical decisions, trade-offs, and next steps
+- [x] The README's account of what changed during the build is drawn from the PRD's `## Amendments` table
 - [ ] A stranger reaches the simulated confirmation in under a minute without explanation
