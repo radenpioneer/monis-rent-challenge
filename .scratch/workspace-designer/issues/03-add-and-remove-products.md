@@ -10,7 +10,7 @@ Every Product authored here carries its real Monis name and descriptor, taken ve
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] Every remaining Product in the catalog can be added and removed by tapping its card
 - [x] Added Products appear immediately in the scene at a sensible default position

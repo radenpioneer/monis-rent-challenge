@@ -8,7 +8,7 @@ The rules are deterministic and need no algorithm: monitor without laptop stand 
 
 **Blocked by:** 03
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] Adding a monitor with no laptop stand surfaces the laptop stand
 - [x] A Workspace with no lamp surfaces the lamp

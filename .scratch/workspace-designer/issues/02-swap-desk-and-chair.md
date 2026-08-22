@@ -8,7 +8,7 @@ The second chair is a concept Product and must be labelled as such, so nobody mi
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] Two desks and two chairs are browsable as cards showing image, name, a short descriptor, and price
 - [x] Choosing a different desk visibly changes the scene

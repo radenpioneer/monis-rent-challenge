@@ -14,7 +14,7 @@ Any motion that slides or transforms an element animates a wrapping element rath
 
 **Design:** `adapt`, in place of `shape`
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] The full flow is comfortable on desktop
 - [x] The full flow is usable at 375px width

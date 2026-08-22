@@ -10,7 +10,7 @@ Reset clears the saved workspace along with everything else.
 
 **Blocked by:** 05
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] Reloading restores desk, chair, added Products, their positions, and the Rental configuration
 - [x] Corrupt saved data falls back to the starter Workspace with no visible error

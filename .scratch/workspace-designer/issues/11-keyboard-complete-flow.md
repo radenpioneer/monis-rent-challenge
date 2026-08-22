@@ -10,7 +10,7 @@ Selected states must survive a greyscale screenshot, so colour is never the only
 
 **Blocked by:** 08
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] The complete flow — build, configure, review, confirm — is finishable by keyboard alone
 - [x] Every interactive element has a meaningful accessible name

@@ -10,7 +10,7 @@ Opening this screen directly, without having built anything, shows the starter W
 
 **Blocked by:** 05
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] Every Product in the Workspace is listed with the correct quantity
 - [x] A visual snapshot of the room appears

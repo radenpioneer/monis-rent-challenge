@@ -8,7 +8,7 @@ It stays reachable at all times. It is the reason experimenting with the scene c
 
 **Blocked by:** 05
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] Reset is reachable from the builder at any point
 - [x] It confirms before discarding anything

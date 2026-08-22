@@ -10,7 +10,7 @@ No request is sent anywhere, because there is nothing to send it to.
 
 **Blocked by:** 07
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] The confirmation restates delivery date, Area, Duration, and total
 - [x] The demo disclaimer is unmissable

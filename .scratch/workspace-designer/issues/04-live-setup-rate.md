@@ -8,7 +8,7 @@ The Setup rate is computed from the Workspace alone, with no delivery or duratio
 
 **Blocked by:** 03
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] The Setup rate is visible without scrolling on desktop
 - [x] It changes immediately on add, remove, and swap

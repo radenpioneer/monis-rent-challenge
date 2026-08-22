@@ -6,7 +6,7 @@ The route structure for the whole product goes in here, with the Workspace share
 
 **Blocked by:** None — can start immediately.
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] Opening the app shows a room containing a desk and a chair, with no interaction required
 - [x] Both objects are drawn from Workspace state, so changing that state changes the picture

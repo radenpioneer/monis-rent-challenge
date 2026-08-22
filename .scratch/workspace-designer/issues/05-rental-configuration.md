@@ -8,7 +8,7 @@ Switching between weekly and monthly relabels the duration control and drops a d
 
 **Blocked by:** 04
 
-**Status:** ready-for-agent
+**Status:** done
 
 - [x] An Area can be chosen from the five Bali destinations, each with a mocked delivery fee
 - [x] A delivery date can be chosen and past dates are unselectable

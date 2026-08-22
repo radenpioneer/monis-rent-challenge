@@ -10,12 +10,18 @@ There is no collision system. Overlap is tolerated; sensible defaults, light sna
 
 **Blocked by:** 03
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] A monitor can be dragged across the desk and stays where it is dropped
-- [ ] The chair can be dragged around the floor
-- [ ] No object can be dragged outside the Zone it belongs to
-- [ ] Dragging tracks the pointer without visible lag
-- [ ] The Workspace is updated once per drag, not once per frame
-- [ ] Releasing the pointer outside the window does not strand an object mid-drag
-- [ ] Objects never render behind the desk
+- [x] A monitor can be dragged across the desk and stays where it is dropped
+- [x] The chair can be dragged around the floor
+- [x] No object can be dragged outside the Zone it belongs to
+- [x] Dragging tracks the pointer without visible lag
+- [x] The Workspace is updated once per drag, not once per frame
+- [x] Releasing the pointer outside the window does not strand an object mid-drag
+- [x] Objects never render behind the desk
+
+## Comments
+
+**Implemented.** Commit `656d1c3` added direct pointer-driven scene transforms during drag,
+clamped drops through the relevant Zone, released pointer capture on every completion path, and
+committed the Workspace movement once on drop.
