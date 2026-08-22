@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-22T07:32:10.000Z",
+  "generatedAt": "2026-08-22T11:31:09.000Z",
   "title": "Design System: Monis Workspace Designer",
   "extensions": {
     "colorMeta": {
@@ -222,6 +222,48 @@
         "displayName": "Shell Terracotta",
         "canonical": "#c4693f",
         "note": "Compact Task Chair. Pad #da855c, stitch #a9532f, frame #4a4038. Marks the concept chair as visibly the odd one out."
+      },
+      "night-midnight": {
+        "role": "tertiary",
+        "displayName": "Midnight",
+        "canonical": "#101722",
+        "note": "Scene-only overlay at 62% opacity; never a chrome theme token."
+      },
+      "monitor-glow": {
+        "role": "tertiary",
+        "displayName": "Monitor Glow",
+        "canonical": "#b8dcf2",
+        "note": "Lit monitor face in night view."
+      },
+      "monitor-halo": {
+        "role": "tertiary",
+        "displayName": "Monitor Halo",
+        "canonical": "#78bce6",
+        "note": "Soft glow around a present monitor in night view."
+      },
+      "screen-highlight": {
+        "role": "tertiary",
+        "displayName": "Screen Highlight",
+        "canonical": "#e9f6ff",
+        "note": "Top-left reflection in a lit monitor screen."
+      },
+      "lamp-light": {
+        "role": "tertiary",
+        "displayName": "Lamp Light",
+        "canonical": "#fff0c9",
+        "note": "The Smart LED Desk Lamp 1S's emitted bar of light."
+      },
+      "lamp-spill": {
+        "role": "tertiary",
+        "displayName": "Lamp Spill",
+        "canonical": "#ffd58b",
+        "note": "Warm desk pool emitted only when the lamp is present."
+      },
+      "lamp-halo": {
+        "role": "tertiary",
+        "displayName": "Lamp Halo",
+        "canonical": "#ffcc7a",
+        "note": "Soft glow surrounding the lamp's desk pool in night view."
       }
     },
     "typographyMeta": {

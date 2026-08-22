@@ -25,6 +25,13 @@ colors:
   graphite: "#3b444d"
   mesh-slate: "#5e6b78"
   shell-terracotta: "#c4693f"
+  night-midnight: "#101722"
+  monitor-glow: "#b8dcf2"
+  monitor-halo: "#78bce6"
+  screen-highlight: "#e9f6ff"
+  lamp-light: "#fff0c9"
+  lamp-spill: "#ffd58b"
+  lamp-halo: "#ffcc7a"
 typography:
   headline:
     fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
@@ -177,6 +184,8 @@ Two palettes that never mix: a warm paper-and-ink chrome, and the room's full ma
 The scene owns its own palette and does not draw from the chrome tokens above. Its structure: **Room Wall** and **Room Floor** as vertical gradients (`#fcfaf6`→`#f0eae0` and `#efe8de`→`#e0d6c8`), a **Skirting** band (`#f4eee5`) and a **Horizon** line (`#dcd2c2`) where they meet. **Daylight** (`#fff7e4`, 55%) falls as a hard-edged polygon from the window. **Sky** (`#d6edef`→`#f6fcfb`) and **Foliage** (`#7fb89f` on a `#6fa894` stem) fill the glass. **Rug Terracotta** (`#e7c3ac`, inner stroke `#d6ae95`) covers the whole furniture footprint so nothing floats, and **Rattan** (`#e4c393`, stroke `#d2ac77`) hangs the pendant.
 
 Materials come in three families, so two products of the same category read apart at a glance: warm woods (**Oak** `#e7c79e` and **Walnut** `#c08a5a`, each with a darker front and side face), cool metals (**Steel** `#99a2aa`, **Graphite** `#3b444d`, **Mesh Slate** `#5e6b78`), and **Shell Terracotta** (`#c4693f`) which marks the concept chair as visibly the odd one out.
+
+**Night palette.** Night is an alternate atmosphere for the room, never a second application theme. **Midnight** (`#101722`, 62% overlay) lowers the room without erasing its material colours; **Monitor Glow** (`#b8dcf2`, with a `#78bce6` halo and `#e9f6ff` screen highlight) makes only present screens feel awake; and **Lamp Light** (`#fff0c9` with a `#ffd58b` desk spill and `#ffcc7a` halo) is reserved for the Smart LED Desk Lamp 1S. Its absence deliberately leaves the desk without that warm pool. Chrome tokens — Ink, Ground, Surface, Cream, and Line — do not change.
 
 ### Named Rules
 

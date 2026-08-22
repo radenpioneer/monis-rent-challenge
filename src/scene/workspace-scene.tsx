@@ -2,6 +2,7 @@
 
 import {
   useEffect,
+  useId,
   useRef,
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
@@ -37,6 +38,49 @@ type PlacedCopy = {
 
 type Dragging = { stop: () => void };
 type FloorCopy = { key: string; productId: ProductId; point: Point; copy?: number };
+
+/** Evening light is painted over the existing room, then punctuated by the
+ * screens and lamp that are actually in this Workspace. Keeping it decorative
+ * means it cannot affect the room's placement or drag model. */
+function NightAtmosphere({
+  monitors,
+  lamp,
+  filterId,
+}: {
+  monitors: PlacedCopy[];
+  lamp: PlacedCopy | undefined;
+  filterId: string;
+}) {
+  return (
+    <g aria-hidden="true">
+      <defs>
+        <filter id={filterId} x="-40%" y="-80%" width="180%" height="260%">
+          <feGaussianBlur stdDeviation="22" />
+        </filter>
+      </defs>
+
+      {/* The room darkens as a whole; its materials stay visible instead of
+          being mechanically recoloured into a second application theme. */}
+      <rect x={0} y={0} width={SCENE.width} height={SCENE.height} fill="#101722" opacity={0.62} />
+
+      {monitors.map((monitor) => (
+        <g key={monitor.key} transform={at(monitor.point)}>
+          <ellipse cx={0} cy={-96} rx={86} ry={72} fill="#78BCE6" opacity={0.24} filter={`url(#${filterId})`} />
+          <rect x={-58} y={-136} width={116} height={68} rx={8} fill="#B8DCF2" opacity={0.58} />
+          <path d="M-54,-130 H-3 L-54,-82 Z" fill="#E9F6FF" opacity={0.26} />
+        </g>
+      ))}
+
+      {lamp ? (
+        <g transform={at(lamp.point)}>
+          <ellipse cx={26} cy={-44} rx={122} ry={58} fill="#FFCC7A" opacity={0.24} filter={`url(#${filterId})`} />
+          <path d="M-74,-5 L116,-5 L72,58 L-114,58 Z" fill="#FFD58B" opacity={0.28} />
+          <rect x={16} y={-157} width={42} height={10} rx={5} fill="#FFF0C9" opacity={0.95} />
+        </g>
+      ) : null}
+    </g>
+  );
+}
 
 /**
  * Every copy of every Placed Product belonging to one Zone, back to front.
@@ -194,15 +238,19 @@ export function WorkspaceScene({
   onMoveChair,
   onMoveProduct,
   interactive = true,
+  night = false,
 }: {
   workspace: Workspace;
   onMoveChair: (position: Position) => void;
   onMoveProduct: (productId: PlaceableId, copy: number, position: Position) => void;
   /** A review screen needs the same room as a visual record, not a second drag surface. */
   interactive?: boolean;
+  /** The builder can preview the same Workspace after dark without changing its chrome. */
+  night?: boolean;
 }) {
   const dragging = useRef<Dragging | null>(null);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const nightGlowId = useId().replaceAll(":", "");
 
   useEffect(() => () => dragging.current?.stop(), []);
 
@@ -252,6 +300,7 @@ export function WorkspaceScene({
   const chairPoint = project(FLOOR_ZONE, workspace.chairPosition);
   const onFloor = copiesIn(workspace, FLOOR_ZONE, isOnFloor);
   const onDesktop = copiesIn(workspace, DESKTOP_ZONE, isOnDesktop);
+  const lamp = onDesktop.find((copy) => copy.productId === "smart-desk-lamp");
   const floor: FloorCopy[] = [
     { key: "chair", productId: workspace.chairId, point: chairPoint },
     ...onFloor,
@@ -316,6 +365,14 @@ export function WorkspaceScene({
           </g>
         ),
       )}
+
+      {night ? (
+        <NightAtmosphere
+          monitors={onDesktop.filter((copy) => isMonitor(copy.productId))}
+          lamp={lamp}
+          filterId={nightGlowId}
+        />
+      ) : null}
     </svg>
   );
 }

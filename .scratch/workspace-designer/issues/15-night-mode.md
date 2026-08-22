@@ -16,10 +16,10 @@ First item on the cut list. If time is short, this goes and nothing important is
 
 **Design:** `colorize`, in place of `shape`
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] A day/night toggle is available and obvious
-- [ ] Night darkens the room and adds a subtle monitor glow
-- [ ] The desk lamp visibly lights the desk at night when present, and its absence is noticeable
-- [ ] Panels, cards, and controls are unaffected
-- [ ] DESIGN.md gains a night palette under The Room, and the chrome tokens are untouched
+- [x] A day/night toggle is available and obvious
+- [x] Night darkens the room and adds a subtle monitor glow
+- [x] The desk lamp visibly lights the desk at night when present, and its absence is noticeable
+- [x] Panels, cards, and controls are unaffected
+- [x] DESIGN.md gains a night palette under The Room, and the chrome tokens are untouched
