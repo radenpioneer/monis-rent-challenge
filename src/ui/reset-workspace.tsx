@@ -15,8 +15,9 @@ export function ResetWorkspace() {
     dialogRef.current?.showModal();
   }
 
-  function resetIfConfirmed(event: React.SyntheticEvent<HTMLDialogElement>) {
-    if (event.currentTarget.returnValue === "reset") dispatch({ type: "reset" });
+  function resetWorkspace() {
+    dispatch({ type: "reset" });
+    dialogRef.current?.close();
   }
 
   return (
@@ -33,8 +34,7 @@ export function ResetWorkspace() {
         ref={dialogRef}
         aria-labelledby="reset-workspace-title"
         aria-describedby="reset-workspace-description"
-        onClose={resetIfConfirmed}
-        className="m-auto w-[calc(100%-2rem)] max-w-sm rounded-3xl bg-surface p-0 text-ink shadow-[0_24px_60px_-28px_rgba(43,39,33,0.65)] backdrop:bg-ink/30"
+        className="m-auto w-[calc(100%-2rem)] max-w-sm rounded-3xl bg-surface p-0 text-ink shadow-[0_18px_46px_-30px_rgba(43,39,33,0.5)] backdrop:bg-ink/30"
       >
         <form method="dialog" className="flex flex-col gap-5 p-6">
           <div className="flex flex-col gap-2">
@@ -53,8 +53,8 @@ export function ResetWorkspace() {
               Keep editing
             </button>
             <button
-              type="submit"
-              value="reset"
+              type="button"
+              onClick={resetWorkspace}
               className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-surface transition hover:bg-ink/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
             >
               Reset workspace
