@@ -16,9 +16,11 @@ import {
   FLOOR_ZONE,
   SCENE,
   clampPosition,
+  nudgePosition,
   project,
   roundCoord,
   unproject,
+  type ArrowKey,
   type Point,
   type Zone,
 } from "@/workspace/zones";
@@ -29,6 +31,7 @@ type PlacedCopy = {
   key: string;
   productId: PlaceableId;
   copy: number;
+  position: Position;
   point: Point;
 };
 
@@ -63,6 +66,7 @@ function copiesIn(
       key,
       productId,
       copy,
+      position,
       point: project(zone, position),
     }));
 }
@@ -111,6 +115,7 @@ function DraggableAsset({
   label,
   selected,
   onSelect,
+  onNudge,
   onPointerDown,
   productId,
 }: {
@@ -118,13 +123,27 @@ function DraggableAsset({
   label: string;
   selected: boolean;
   onSelect: () => void;
+  onNudge: (key: ArrowKey) => void;
   onPointerDown: (event: ReactPointerEvent<SVGGElement>) => void;
   productId: ProductId;
 }) {
   function selectWithKeyboard(event: ReactKeyboardEvent<SVGGElement>) {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
-    onSelect();
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onSelect();
+      return;
+    }
+
+    if (
+      event.key === "ArrowLeft" ||
+      event.key === "ArrowRight" ||
+      event.key === "ArrowUp" ||
+      event.key === "ArrowDown"
+    ) {
+      event.preventDefault();
+      onSelect();
+      onNudge(event.key);
+    }
   }
 
   return (
@@ -133,7 +152,7 @@ function DraggableAsset({
       className="placed-product cursor-grab touch-none active:cursor-grabbing"
       role="button"
       tabIndex={0}
-      aria-label={`Select ${label}`}
+      aria-label={`Select ${label}. Use arrow keys to move it.`}
       aria-pressed={selected}
       data-selected={selected || undefined}
       onKeyDown={selectWithKeyboard}
@@ -263,6 +282,7 @@ export function WorkspaceScene({
             productId={copy.productId}
             selected={selectedKey === copy.key}
             onSelect={() => setSelectedKey(copy.key)}
+            onNudge={(key) => onMoveChair(nudgePosition(workspace.chairPosition, key))}
             onPointerDown={(event) => startDrag(event, FLOOR_ZONE, copy.point, onMoveChair)}
           />
         ) : (
@@ -281,6 +301,9 @@ export function WorkspaceScene({
             productId={copy.productId}
             selected={selectedKey === copy.key}
             onSelect={() => setSelectedKey(copy.key)}
+            onNudge={(key) =>
+              onMoveProduct(copy.productId, copy.copy, nudgePosition(copy.position, key))
+            }
             onPointerDown={(event) =>
               startDrag(event, DESKTOP_ZONE, copy.point, (position) =>
                 onMoveProduct(copy.productId, copy.copy, position),

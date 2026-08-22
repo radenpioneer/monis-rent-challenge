@@ -16,6 +16,10 @@ export const SCENE = { width: 1200, height: 800, horizon: 440 } as const;
  */
 export type Zone = { origin: Point; u: Point; v: Point };
 
+export type ArrowKey = "ArrowLeft" | "ArrowRight" | "ArrowUp" | "ArrowDown";
+
+const NUDGE_STEP = 0.05;
+
 /** Authored scene coordinates carry one decimal place. */
 export function roundCoord(n: number): number {
   return Math.round(n * 10) / 10;
@@ -81,4 +85,18 @@ export function clampPosition(position: Position): Position {
     x: Math.min(1, Math.max(0, position.x)),
     y: Math.min(1, Math.max(0, position.y)),
   };
+}
+
+/** Move a Position one small step, using the same normalized bounds as dragging. */
+export function nudgePosition(position: Position, key: ArrowKey): Position {
+  switch (key) {
+    case "ArrowLeft":
+      return clampPosition({ ...position, x: position.x - NUDGE_STEP });
+    case "ArrowRight":
+      return clampPosition({ ...position, x: position.x + NUDGE_STEP });
+    case "ArrowUp":
+      return clampPosition({ ...position, y: position.y - NUDGE_STEP });
+    case "ArrowDown":
+      return clampPosition({ ...position, y: position.y + NUDGE_STEP });
+  }
 }

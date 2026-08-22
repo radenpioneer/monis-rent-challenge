@@ -10,7 +10,7 @@ Nudging and dragging produce identical changes to the Workspace — two inputs, 
 
 **Status:** ready-for-agent
 
-- [ ] Arrow keys move a focused scene object in small steps
-- [ ] Nudging respects the same Zone bounds as dragging
-- [ ] A nudge and a drag to the same place produce the same state
-- [ ] The moved object stays focused after moving
+- [x] Arrow keys move a focused scene object in small steps
+- [x] Nudging respects the same Zone bounds as dragging
+- [x] A nudge and a drag to the same place produce the same state
+- [x] The moved object stays focused after moving
