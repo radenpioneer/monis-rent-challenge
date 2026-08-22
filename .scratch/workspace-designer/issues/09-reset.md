@@ -10,7 +10,14 @@ It stays reachable at all times. It is the reason experimenting with the scene c
 
 **Status:** ready-for-agent
 
-- [ ] Reset is reachable from the builder at any point
-- [ ] It confirms before discarding anything
-- [ ] It restores the starter Workspace, not an empty room
-- [ ] It restores the default Rental configuration too
+- [x] Reset is reachable from the builder at any point
+- [x] It confirms before discarding anything
+- [x] It restores the starter Workspace, not an empty room
+- [x] It restores the default Rental configuration too
+
+## Comments
+
+**Implemented.** Reset now stays in the builder's sticky setup panel and opens a native
+confirmation dialog. Confirming dispatches the existing `reset` Rental action, which restores
+the starter Workspace and default Rental configuration; cancelling and Escape preserve the
+current composition.

@@ -4,6 +4,7 @@ import { formatRate, formatUsd } from "@/pricing/format";
 import { monthlySaving, setupRate } from "@/pricing/setup-rate";
 import type { Cycle } from "@/workspace/types";
 import { ChoicePill } from "./choice-pill";
+import { ResetWorkspace } from "./reset-workspace";
 import { useRental } from "./rental-provider";
 
 const LABEL_ID = "setup-rate-label";
@@ -86,6 +87,10 @@ export function SetupRatePanel() {
       <p className="mt-3 text-xs text-ink-muted">
         Demo pricing — this figure is invented for this concept, not a real Monis quote.
       </p>
+
+      <div className="mt-4 border-t border-line pt-3">
+        <ResetWorkspace />
+      </div>
     </section>
   );
 }
