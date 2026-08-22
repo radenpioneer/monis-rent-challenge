@@ -4,13 +4,13 @@ import { WorkspaceScene } from "@/scene/workspace-scene";
 import { CatalogPanel } from "./catalog-panel";
 import { RentalPanel } from "./rental-panel";
 import { useRental } from "./rental-provider";
-import { SetupRatePanel } from "./setup-rate-panel";
+import { MobileSetupRate, SetupRatePanel } from "./setup-rate-panel";
 
 export function Builder() {
   const { rental, dispatch } = useRental();
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-16 sm:px-6 lg:flex-row lg:items-start">
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-28 sm:px-6 lg:flex-row lg:items-start lg:pb-16">
       {/* The scene keeps its 3:2 aspect and stays whole on screen: its width is
           capped by the height left over once the header and caption are placed.
           It sticks on the wide layout because the rail is taller than the
@@ -45,6 +45,12 @@ export function Builder() {
         <CatalogPanel />
         <RentalPanel />
       </div>
+
+      {/* On a phone the full rate panel belongs in the rail, but its headline
+          would disappear while someone compares Products. This small, visual
+          duplicate keeps the changing figure in the thumb zone without adding
+          another control or live announcement. */}
+      <MobileSetupRate />
     </div>
   );
 }

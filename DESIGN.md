@@ -220,6 +220,14 @@ Rhythm runs on a 4px base, in practice `8 / 12 / 16 / 24`: `12px` inside a card 
 
 The scene itself is a single SVG on a `1200 × 800` viewBox (3:2), scaling fluidly with its container.
 
+### Mobile adaptation
+
+Below `lg` (1024px), the builder is one column: the whole scene and its caption come first, then the same three rail panels in the same order. The rail never becomes tabs, a drawer, or a bottom sheet. At phone widths, the scene takes the full content width and keeps its 3:2 frame, so it remains the first and largest thing on screen rather than a preview above a catalog.
+
+The complete Setup rate panel stays at the top of the rail, where its Cycle control belongs. A compact, read-only Setup rate is fixed to the bottom of the viewport on screens below `lg`; it has no duplicate controls or live region, because the panel remains the accessible source of the rate. Builder content ends with `112px` of mobile clearance so the footer never covers the final action. The footer includes `max(16px, env(safe-area-inset-bottom))` below its content for home indicators.
+
+Touch is the primary input below `lg`. Product cards remain whole-card actions, while category, choice, field, and stepper controls have a `44px` minimum target; their desktop dimensions return from `lg` upward. Dragging remains available, but selecting Products never depends on it.
+
 ### Named Rules
 
 **The Whole-Room Rule.** The scene's width is capped by the viewport height left over after the header and caption: `max-width: calc((100dvh - 13rem) * 1.5)`. The room is the product, so it is never cropped and never scrolled past — it is sized to fit whole, and the chrome takes whatever is left.

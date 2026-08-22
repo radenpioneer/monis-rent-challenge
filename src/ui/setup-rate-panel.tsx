@@ -94,3 +94,23 @@ export function SetupRatePanel() {
     </section>
   );
 }
+
+/** The mobile footer keeps the live setup rate visible while the rail scrolls. */
+export function MobileSetupRate() {
+  const { rental } = useRental();
+  const { workspace, cycle } = rental;
+
+  return (
+    <div
+      aria-hidden="true"
+      className="fixed inset-x-0 bottom-0 z-20 bg-surface px-4 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-[0_-14px_30px_-20px_rgba(43,39,33,0.55)] lg:hidden"
+    >
+      <div className="mx-auto flex max-w-7xl items-baseline justify-between gap-4">
+        <span className="text-sm text-ink-muted">Setup rate</span>
+        <span className="text-lg font-semibold tracking-tight tabular-nums text-ink">
+          {formatRate(setupRate(workspace, cycle), cycle)}
+        </span>
+      </div>
+    </div>
+  );
+}

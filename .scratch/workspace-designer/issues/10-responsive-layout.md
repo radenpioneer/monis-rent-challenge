@@ -16,10 +16,18 @@ Any motion that slides or transforms an element animates a wrapping element rath
 
 **Status:** ready-for-agent
 
-- [ ] The full flow is comfortable on desktop
-- [ ] The full flow is usable at 375px width
-- [ ] A complete Workspace can be built on a phone without dragging anything
-- [ ] The scene stays visually prominent on mobile
-- [ ] The running total is visible without scrolling on mobile
-- [ ] The rail drops beneath the scene below `lg`, per DESIGN.md
-- [ ] DESIGN.md gains the mobile specification it was missing, written by `adapt` rather than by hand
+- [x] The full flow is comfortable on desktop
+- [x] The full flow is usable at 375px width
+- [x] A complete Workspace can be built on a phone without dragging anything
+- [x] The scene stays visually prominent on mobile
+- [x] The running total is visible without scrolling on mobile
+- [x] The rail drops beneath the scene below `lg`, per DESIGN.md
+- [x] DESIGN.md gains the mobile specification it was missing, written by `adapt` rather than by hand
+
+## Comments
+
+**Implemented.** Below `lg`, the rail remains beneath the 3:2 scene and the
+mobile footer keeps a read-only Setup rate in view. Tapping a Product updates
+that rate without dragging. Category, choice, field, and stepper controls grow
+to 44px touch targets below `lg`; desktop sizing is unchanged. Verified in a
+375px browser viewport and at desktop width.

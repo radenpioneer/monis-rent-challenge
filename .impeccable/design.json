@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-17T00:00:00.000Z",
+  "generatedAt": "2026-08-22T07:32:10.000Z",
   "title": "Design System: Monis Workspace Designer",
   "extensions": {
     "colorMeta": {
@@ -419,6 +419,11 @@
         "section": "layout"
       },
       {
+        "name": "The Thumb-Rate Rule",
+        "body": "Below lg, the rail follows the whole scene and a compact read-only Setup rate stays fixed in the footer. The accessible setup panel remains the source of the live announcement and Cycle control; the footer adds no duplicate control or live region.",
+        "section": "layout"
+      },
+      {
         "name": "The Light-Not-Lines Rule",
         "body": "A surface declares depth exactly once. Lifted surfaces carry a shadow and no border; bordered surfaces carry a hairline and no shadow. A 1px ring under a wide soft shadow is the ghost-card tell and is banned outright.",
         "section": "elevation"
@@ -436,7 +441,8 @@
       "Do pair every state that matters with a mark and a word, not just a fill \u2014 the PRD requires it and the system is built around it.",
       "Do set changing figures in tabular-nums.",
       "Do border a pill in both states so selection never shifts the layout.",
-      "Do size the scene from leftover viewport height so the room always fits whole."
+      "Do size the scene from leftover viewport height so the room always fits whole.",
+      "Do keep touch targets at least 44px below lg while preserving desktop density from lg upward."
     ],
     "donts": [
       "Don't put a border and a shadow on the same surface.",

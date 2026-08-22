@@ -10,7 +10,8 @@
  * by a pixel. Selected inverts to an Ink fill rather than tinting: an inversion
  * survives a greyscale screenshot, which selection here is required to.
  */
-const PILL = "rounded-full border px-3.5 py-1.5 text-sm font-medium transition";
+const PILL =
+  "min-h-11 rounded-full border px-3.5 py-1.5 text-sm font-medium transition lg:min-h-0";
 
 const SELECTED = "border-ink bg-ink text-surface";
 

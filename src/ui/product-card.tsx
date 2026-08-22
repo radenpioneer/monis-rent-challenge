@@ -304,8 +304,8 @@ function StepButton({
       aria-disabled={dimmed || undefined}
       aria-describedby={describedBy}
       onClick={dimmed ? undefined : onClick}
-      className={`grid h-9 shrink-0 place-items-center rounded-full border text-sm font-medium transition ${FOCUS} ${
-        square ? "w-9" : "px-3.5"
+      className={`grid h-11 shrink-0 place-items-center rounded-full border text-sm font-medium transition lg:h-9 ${FOCUS} ${
+        square ? "w-11 lg:w-9" : "px-3.5"
       } ${
         dimmed
           ? "cursor-not-allowed border-line bg-ground text-ink-muted"

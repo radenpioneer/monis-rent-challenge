@@ -23,7 +23,7 @@ const DURATION_ID = "rental-duration";
 const DATE_PASSED = "That date has passed. Choose today or later — same-day delivery is fine.";
 
 const CONTROL =
-  "h-10 w-full rounded-full border border-line bg-surface px-4 text-base text-ink transition hover:border-ink-faint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink";
+  "h-11 w-full rounded-full border border-line bg-surface px-4 text-base text-ink transition hover:border-ink-faint focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink lg:h-10";
 
 /**
  * Where the workspace goes, when it arrives, and for how long — the last block
