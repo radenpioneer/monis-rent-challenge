@@ -40,6 +40,14 @@ body {
   color: var(--ink);
 }
 
+/* SVG groups do not inherit a browser focus indicator. The outline keeps a
+   focusable Placed Product legible without changing the room's own palette. */
+.placed-product:focus-visible,
+.placed-product[data-selected] {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
 :root {
   caret-color: var(--ink);
   accent-color: var(--ink);

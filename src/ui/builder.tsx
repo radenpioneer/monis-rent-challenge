@@ -28,7 +28,7 @@ export function Builder() {
           />
         </div>
         <p className="text-center text-sm text-ink-muted">
-          Drag the chair or a monitor to make the room your own.
+          Build your workspace in the catalog. You can also drag the chair or a monitor.
         </p>
       </div>
 

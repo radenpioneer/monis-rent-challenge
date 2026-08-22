@@ -12,9 +12,9 @@ Selected states must survive a greyscale screenshot, so colour is never the only
 
 **Status:** ready-for-agent
 
-- [ ] The complete flow — build, configure, review, confirm — is finishable by keyboard alone
-- [ ] Every interactive element has a meaningful accessible name
-- [ ] Focus is always visible and never trapped
-- [ ] Selected states are legible in greyscale
-- [ ] Contrast is sufficient throughout
-- [ ] Focusable scene objects announce what they are
+- [x] The complete flow — build, configure, review, confirm — is finishable by keyboard alone
+- [x] Every interactive element has a meaningful accessible name
+- [x] Focus is always visible and never trapped
+- [x] Selected states are legible in greyscale
+- [x] Contrast is sufficient throughout
+- [x] Focusable scene objects announce what they are

@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, type PointerEvent as ReactPointerEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 import { ProductAsset } from "@/catalog/assets";
 import { getProduct, type PlaceableId, type ProductId } from "@/catalog/products";
 import { isMonitor, isOnDesktop, isOnFloor } from "@/workspace/constraints";
@@ -103,24 +109,55 @@ function describe(workspace: Workspace): string {
 function DraggableAsset({
   transform,
   label,
+  selected,
+  onSelect,
   onPointerDown,
   productId,
 }: {
   transform: string;
   label: string;
+  selected: boolean;
+  onSelect: () => void;
   onPointerDown: (event: ReactPointerEvent<SVGGElement>) => void;
   productId: ProductId;
 }) {
+  function selectWithKeyboard(event: ReactKeyboardEvent<SVGGElement>) {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    onSelect();
+  }
+
   return (
     <g
       transform={transform}
-      className="cursor-grab touch-none active:cursor-grabbing"
+      className="placed-product cursor-grab touch-none active:cursor-grabbing"
       role="button"
       tabIndex={0}
-      aria-label={`Drag ${label}`}
-      onPointerDown={onPointerDown}
+      aria-label={`Select ${label}`}
+      aria-pressed={selected}
+      data-selected={selected || undefined}
+      onKeyDown={selectWithKeyboard}
+      onPointerDown={(event) => {
+        onSelect();
+        onPointerDown(event);
+      }}
     >
       <ProductAsset productId={productId} />
+      {selected ? (
+        <g aria-hidden="true" className="pointer-events-none">
+          <rect x={-54} y={-392} width={108} height={30} rx={15} fill="#F9F2EA" stroke="#2B2721" />
+          <text
+            x={0}
+            y={-371}
+            fill="#2B2721"
+            fontSize={18}
+            fontWeight={600}
+            textAnchor="middle"
+          >
+            Selected
+          </text>
+        </g>
+      ) : null}
     </g>
   );
 }
@@ -146,6 +183,7 @@ export function WorkspaceScene({
   interactive?: boolean;
 }) {
   const dragging = useRef<Dragging | null>(null);
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
 
   useEffect(() => () => dragging.current?.stop(), []);
 
@@ -223,6 +261,8 @@ export function WorkspaceScene({
             transform={at(copy.point)}
             label={getProduct(copy.productId).name}
             productId={copy.productId}
+            selected={selectedKey === copy.key}
+            onSelect={() => setSelectedKey(copy.key)}
             onPointerDown={(event) => startDrag(event, FLOOR_ZONE, copy.point, onMoveChair)}
           />
         ) : (
@@ -239,6 +279,8 @@ export function WorkspaceScene({
             transform={at(copy.point)}
             label={getProduct(copy.productId).name}
             productId={copy.productId}
+            selected={selectedKey === copy.key}
+            onSelect={() => setSelectedKey(copy.key)}
             onPointerDown={(event) =>
               startDrag(event, DESKTOP_ZONE, copy.point, (position) =>
                 onMoveProduct(copy.productId, copy.copy, position),
