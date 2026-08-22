@@ -4,9 +4,12 @@ import { useState } from "react";
 import {
   browsableCategories,
   CATEGORY_LABELS,
+  getProduct,
   productsInCategory,
+  type AccessoryId,
   type CatalogProduct,
 } from "@/catalog/products";
+import type { Product } from "@/catalog/types";
 import {
   addRefusal,
   copiesOf,
@@ -14,6 +17,7 @@ import {
   MONITOR_LIMIT,
   MONITOR_LIMIT_REASON,
 } from "@/workspace/constraints";
+import { recommendationFor } from "@/workspace/recommendation";
 import type { WorkspaceAction } from "@/workspace/reducer";
 import type { Workspace } from "@/workspace/types";
 import { pillClasses } from "./pill";
@@ -78,6 +82,8 @@ export function CatalogPanel() {
   const { rental, dispatch } = useRental();
   const { workspace, cycle } = rental;
   const [category, setCategory] = useState(CATEGORIES[0]);
+  const [dismissedRecommendation, setDismissedRecommendation] = useState<AccessoryId | null>(null);
+  const recommendation = recommendationFor(workspace);
 
   return (
     <section
@@ -98,6 +104,14 @@ export function CatalogPanel() {
         ))}
       </div>
 
+      {recommendation && recommendation !== dismissedRecommendation ? (
+        <RecommendationCard
+          product={getProduct(recommendation)}
+          onAdd={() => dispatch({ type: "addProduct", productId: recommendation })}
+          onDismiss={() => setDismissedRecommendation(recommendation)}
+        />
+      ) : null}
+
       {category === "monitor" ? <MonitorLimitNotice workspace={workspace} /> : null}
 
       <ul className="flex flex-col gap-3">
@@ -115,6 +129,42 @@ export function CatalogPanel() {
       <p className="text-xs text-ink-muted">
         Demo pricing — invented for this concept, not a real Monis quote.
       </p>
+    </section>
+  );
+}
+
+/** A quiet, optional prompt to finish the Workspace — never a sales interruption. */
+function RecommendationCard({
+  product,
+  onAdd,
+  onDismiss,
+}: {
+  product: Product;
+  onAdd: () => void;
+  onDismiss: () => void;
+}) {
+  return (
+    <section className="flex flex-col gap-2 rounded-2xl border border-line bg-ground p-3">
+      <p className="text-sm font-medium text-ink">Complete your workspace</p>
+      <p className="text-xs leading-snug text-ink-muted">
+        {product.name} is one small thing that would make this setup work better.
+      </p>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-medium">
+        <button
+          type="button"
+          onClick={onAdd}
+          className="rounded-full text-ink underline decoration-ink-faint underline-offset-4 transition hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+        >
+          Add {product.name}
+        </button>
+        <button
+          type="button"
+          onClick={onDismiss}
+          className="rounded-full text-ink-muted underline decoration-ink-faint underline-offset-4 transition hover:text-ink hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+        >
+          Not now
+        </button>
+      </div>
     </section>
   );
 }

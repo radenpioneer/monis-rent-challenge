@@ -10,8 +10,8 @@ The rules are deterministic and need no algorithm: monitor without laptop stand 
 
 **Status:** ready-for-agent
 
-- [ ] Adding a monitor with no laptop stand surfaces the laptop stand
-- [ ] A Workspace with no lamp surfaces the lamp
-- [ ] Never more than one suggestion is visible
-- [ ] Adding the suggested Product retires the suggestion
-- [ ] The suggestion can be dismissed and blocks nothing
+- [x] Adding a monitor with no laptop stand surfaces the laptop stand
+- [x] A Workspace with no lamp surfaces the lamp
+- [x] Never more than one suggestion is visible
+- [x] Adding the suggested Product retires the suggestion
+- [x] The suggestion can be dismissed and blocks nothing
