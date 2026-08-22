@@ -7,6 +7,7 @@ import { getArea } from "@/catalog/areas";
 import { formatRate, formatUsd } from "@/pricing/format";
 import { quote } from "@/pricing/quote";
 import { WorkspaceScene } from "@/scene/workspace-scene";
+import { displayDeliveryDate } from "@/ui/display-delivery-date";
 import { useRental } from "@/ui/rental-provider";
 import { deliveryDateOf, describeDuration, rentalEndDate } from "@/workspace/rental";
 
@@ -21,17 +22,6 @@ function itemsInReview(workspace: ReturnType<typeof useRental>["rental"]["worksp
       quantity: positions.length,
     })),
   ];
-}
-
-function displayDeliveryDate(date: string | null) {
-  if (!date) return "As soon as possible";
-
-  return new Intl.DateTimeFormat("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date(`${date}T12:00:00`));
 }
 
 export default function ReviewPage() {
@@ -174,7 +164,7 @@ export default function ReviewPage() {
         </Link>
         <Link
           href="/success"
-          className="rounded-sm text-ink underline decoration-ink-faint underline-offset-4 transition-colors hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+          className="rounded-full bg-ink px-5 py-2.5 text-surface transition-colors hover:bg-ink/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
         >
           Rent this setup
         </Link>

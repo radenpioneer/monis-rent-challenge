@@ -12,7 +12,13 @@ No request is sent anywhere, because there is nothing to send it to.
 
 **Status:** ready-for-agent
 
-- [ ] The confirmation restates delivery date, Area, Duration, and total
-- [ ] The demo disclaimer is unmissable
-- [ ] Returning to the builder preserves the Workspace
-- [ ] No network request is issued
+- [x] The confirmation restates delivery date, Area, Duration, and total
+- [x] The demo disclaimer is unmissable
+- [x] Returning to the builder preserves the Workspace
+- [x] No network request is issued
+
+## Comments
+
+**Implemented.** The review action now leads to a confirmation that derives its details directly
+from the shared Rental. It makes the simulated nature of the flow explicit and returns to the
+preserved Workspace without creating a booking request.
