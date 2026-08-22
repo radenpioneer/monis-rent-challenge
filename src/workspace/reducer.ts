@@ -42,6 +42,8 @@ export type WorkspaceAction =
  */
 export type RentalAction =
   | WorkspaceAction
+  /** A saved Rental is accepted only after the persistence boundary validates it. */
+  | { type: "restore"; rental: Rental }
   | { type: "setArea"; areaId: AreaId }
   /** A null date is "as soon as possible", which is what an untouched Rental holds. */
   | { type: "setDeliveryDate"; date: IsoDate | null }
@@ -51,6 +53,9 @@ export type RentalAction =
 
 export function rentalReducer(rental: Rental, action: RentalAction): Rental {
   switch (action.type) {
+    case "restore":
+      return action.rental;
+
     case "setArea":
       return rental.areaId === action.areaId ? rental : { ...rental, areaId: action.areaId };
 

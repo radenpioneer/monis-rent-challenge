@@ -12,8 +12,16 @@ Reset clears the saved workspace along with everything else.
 
 **Status:** ready-for-agent
 
-- [ ] Reloading restores desk, chair, added Products, their positions, and the Rental configuration
-- [ ] Corrupt saved data falls back to the starter Workspace with no visible error
-- [ ] Storage being unavailable entirely does not break the app
-- [ ] Saved data is versioned so a future shape change cannot poison it
-- [ ] Reset clears the saved workspace
+- [x] Reloading restores desk, chair, added Products, their positions, and the Rental configuration
+- [x] Corrupt saved data falls back to the starter Workspace with no visible error
+- [x] Storage being unavailable entirely does not break the app
+- [x] Saved data is versioned so a future shape change cannot poison it
+- [x] Reset clears the saved workspace
+
+## Comments
+
+Persistence is browser-only and restores after mount in a transition, so the
+server-rendered starter Workspace remains the intentional first frame. The
+saved envelope is versioned and fully validated against catalog and Workspace
+constraints before it can be restored; all storage and parse failures quietly
+fall back to the starter Rental.

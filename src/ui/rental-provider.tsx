@@ -2,8 +2,11 @@
 
 import {
   createContext,
+  startTransition,
   use,
+  useEffect,
   useReducer,
+  useRef,
   useSyncExternalStore,
   type Dispatch,
   type ReactNode,
@@ -11,6 +14,11 @@ import {
 import { todayIso, type IsoDate } from "@/workspace/dates";
 import { rentalReducer, type RentalAction } from "@/workspace/reducer";
 import { STARTER_RENTAL } from "@/workspace/rental";
+import {
+  clearPersistedRental,
+  readPersistedRental,
+  savePersistedRental,
+} from "@/workspace/persistence";
 import type { Rental } from "@/workspace/types";
 
 type RentalContextValue = {
@@ -24,6 +32,11 @@ type RentalContextValue = {
   dispatch: Dispatch<RentalAction>;
 };
 
+type ProviderState = {
+  rental: Rental;
+  restored: boolean;
+};
+
 const RentalContext = createContext<RentalContextValue | null>(null);
 
 /**
@@ -31,13 +44,48 @@ const RentalContext = createContext<RentalContextValue | null>(null);
  * back preserves what the user built without any extra machinery.
  */
 export function RentalProvider({ children }: { children: ReactNode }) {
-  const [rental, dispatch] = useReducer(rentalReducer, STARTER_RENTAL);
+  const [{ rental, restored }, reduce] = useReducer(
+    providerReducer,
+    { rental: STARTER_RENTAL, restored: false },
+  );
+  const skipNextSave = useRef(false);
+
+  useEffect(() => {
+    startTransition(() => reduce({ type: "restore", rental: readPersistedRental() }));
+  }, []);
+
+  useEffect(() => {
+    if (!restored) return;
+    if (skipNextSave.current) {
+      skipNextSave.current = false;
+      return;
+    }
+    savePersistedRental(rental);
+  }, [rental, restored]);
+
+  function dispatch(action: RentalAction) {
+    if (action.type === "reset") {
+      clearPersistedRental();
+      skipNextSave.current = true;
+    }
+    reduce(action);
+  }
 
   return (
     <RentalContext value={{ rental, today: useToday(), dispatch }}>
       {children}
     </RentalContext>
   );
+}
+
+function providerReducer(state: ProviderState, action: RentalAction): ProviderState {
+  return {
+    rental: rentalReducer(state.rental, action),
+    // The initial SSR render must remain the starter Rental. This flag changes
+    // only with the browser-only restore action, so the first save waits until
+    // the restored Rental is actually rendered.
+    restored: state.restored || action.type === "restore",
+  };
 }
 
 export function useRental() {
