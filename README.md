@@ -103,17 +103,15 @@ Open [http://localhost:3000](http://localhost:3000) after starting the dev serve
 
 ## Deployment
 
-Production deployment is performed by GitHub Actions in
-`.github/workflows/vercel-production.yml`. The runner verifies the source, pulls
-the production Vercel configuration, builds `.vercel/output` with `vercel build`,
-then uploads it with `vercel deploy --prebuilt --prod`. Vercel receives a prebuilt
-artifact; it does not build this repository's source.
+Vercel builds this Next.js repository directly through its native Git integration;
+there is no GitHub Actions deployment workflow or deployment secret to maintain.
+Import the GitHub repository in Vercel and leave the detected Next.js settings in
+place. Vercel then builds each pull request as a Preview and deploys `main` to
+Production automatically.
 
-Create a Vercel project, then configure these GitHub Actions secrets:
+The project has no required Vercel environment variables. Its build command is
+the standard `npm run build`; Vercel installs the locked dependencies before
+running it.
 
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
-
-Push to `main` or run the workflow manually to deploy production. The repository
-must also grant `desent-bot` read collaborator access before challenge submission.
+The repository must also grant `desent-bot` read collaborator access before
+challenge submission.
