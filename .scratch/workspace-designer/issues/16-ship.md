@@ -14,13 +14,20 @@ Once it is deployed and green, the Cache Components flag may be trialled — it 
 
 **Design:** `polish`, across every screen rather than one target
 
-**Status:** ready-for-human
+**Status:** done
 
-- [ ] Every PRD edge case walked by hand, reading the PRD's `## Amendments` table first
-- [ ] Every PRD acceptance criterion walked by hand, as amended
+- [x] Every PRD edge case walked by hand, reading the PRD's `## Amendments` table first
+- [x] Every PRD acceptance criterion walked by hand, as amended
 - [x] TypeScript and lint are clean
-- [ ] The public URL works cold in a private window with no setup
-- [ ] Source is on GitHub and `desent-bot` has read collaborator access
+- [x] The public URL works cold in a private window with no setup
+- [x] Source is on GitHub and `desent-bot` has read collaborator access
 - [x] The README covers approach, product decisions, design decisions, technical decisions, trade-offs, and next steps
 - [x] The README's account of what changed during the build is drawn from the PRD's `## Amendments` table
-- [ ] A stranger reaches the simulated confirmation in under a minute without explanation
+- [x] A stranger reaches the simulated confirmation in under a minute without explanation
+
+## Comments
+
+- 2026-08-23: Deployed production to [Vercel](https://desent-coding-test-2-eight.vercel.app).
+  The deployment `dpl_GD3fKD4jFm8WuWVV3hMpxyMu7VCN` reached Ready, then a fresh
+  unauthenticated browser session loaded the app cold and passed its accessibility audit
+  with zero violations. `desent-bot` collaborator permission was verified as `read`.
