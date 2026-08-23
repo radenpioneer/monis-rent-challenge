@@ -7,3 +7,25 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Agent skills
+
+### Issue tracker
+
+Issues live as markdown files under `.scratch/<feature>/` in this repo. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five canonical roles, used verbatim as `Status:` values. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context — `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+
+### Document authority
+
+Five documents bind this project and one of them is amendable. Before resolving a contradiction between `PRD.md`, `PRODUCT.md`, `DESIGN.md`, `CONTEXT.md`, or an ADR, see `docs/adr/0002-document-authority-and-the-design-workflow.md`.
+
+### Design workflow
+
+Tickets that change what the user sees run the `impeccable` skill at fixed points. See `docs/agents/design-workflow.md`.

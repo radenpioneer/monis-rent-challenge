@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
+/**
+ * The chrome is warm paper and ink. Colour is the room's job, not the
+ * interface's — every hue in this file is either paper, ink, or the one
+ * signal borrowed from Monis's own badge language.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ground: #f5f1ea;
+  --surface: #ffffff;
+  --cream: #f9f2ea;
+  --line: #e8e1d6;
+  --ink: #2b2721;
+  --ink-muted: #6b6259;
+  --ink-faint: #a79c8e;
+  --signal: #63aefd;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-cream: var(--cream);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-signal: var(--signal);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* One light theme. Night mode is a property of the scene, not of the chrome. */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--ground);
+  color: var(--ink);
+}
+
+/* The surfaces the browser draws still belong to the design system. */
+::selection {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+/* SVG groups do not inherit a browser focus indicator. The outline keeps a
+   focusable Placed Product legible without changing the room's own palette. */
+.placed-product:focus-visible,
+.placed-product[data-selected] {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+:root {
+  caret-color: var(--ink);
+  accent-color: var(--ink);
+  /* The date picker and the select list are drawn by the browser, and they
+     follow this rather than the page. One light theme means one light picker,
+     whatever the visitor's OS is set to. */
+  color-scheme: light;
 }
