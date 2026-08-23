@@ -86,7 +86,12 @@ export function rentalEndDate(
 
   const date = new Date(`${deliveryDate}T12:00:00`);
   if (cycle === "weekly") date.setDate(date.getDate() + duration * 7);
-  else date.setMonth(date.getMonth() + duration);
+  else {
+    const day = date.getDate();
+    date.setDate(1);
+    date.setMonth(date.getMonth() + duration);
+    date.setDate(Math.min(day, new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()));
+  }
 
   return date.toLocaleDateString("en-CA");
 }

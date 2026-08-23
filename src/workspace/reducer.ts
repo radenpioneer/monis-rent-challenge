@@ -91,7 +91,7 @@ export function rentalReducer(rental: Rental, action: RentalAction): Rental {
       // Reset is a Rental action rather than a Workspace one: it returns the
       // starter room *and* the default delivery details, which is what the PRD
       // means by a default configuration.
-      return STARTER_RENTAL;
+      return { ...STARTER_RENTAL };
 
     default: {
       const workspace = workspaceReducer(rental.workspace, action);

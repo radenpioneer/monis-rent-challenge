@@ -52,7 +52,7 @@ function NightAtmosphere({
   filterId: string;
 }) {
   return (
-    <g aria-hidden="true">
+    <g aria-hidden="true" pointerEvents="none">
       <defs>
         <filter id={filterId} x="-40%" y="-80%" width="180%" height="260%">
           <feGaussianBlur stdDeviation="22" />

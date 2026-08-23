@@ -162,12 +162,18 @@ export function RentalPanel() {
         delivery and setup at no extra fee.
       </p>
 
-      <Link
-        href="/review"
-        className="self-start rounded-sm text-sm font-medium text-ink underline decoration-ink-faint underline-offset-4 transition-colors hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
-      >
-        Review setup
-      </Link>
+      {datePassed ? (
+        <p className="text-sm font-medium text-ink-muted">
+          Choose a valid delivery date before reviewing your setup.
+        </p>
+      ) : (
+        <Link
+          href="/review"
+          className="self-start rounded-sm text-sm font-medium text-ink underline decoration-ink-faint underline-offset-4 transition-colors hover:decoration-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink"
+        >
+          Review setup
+        </Link>
+      )}
     </section>
   );
 }
